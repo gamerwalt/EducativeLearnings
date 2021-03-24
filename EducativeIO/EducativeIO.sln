@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducativeIO", "EducativeIO\EducativeIO.csproj", "{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducativeArrays", "EducativeArrays\EducativeArrays.csproj", "{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6945EF9E-D7CE-4607-A436-D0AFEA68FDEE}
+	EndGlobalSection
+EndGlobal
