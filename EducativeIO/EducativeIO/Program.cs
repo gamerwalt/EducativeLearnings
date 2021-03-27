@@ -7,11 +7,14 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 4, 2, 1, 5, 0 };
+            var arr = new int[] { 10, -1, 20, 4, 5, -9, -6 };
             
-            var result = ArrayChallenges.FindSecondMaximum(arr);
+            ArrayChallenges.ReArrange2(arr);
 
-            Console.WriteLine(result);
+            foreach(var value in arr)
+            {
+                Console.WriteLine(value);
+            }
         }
     }
 }

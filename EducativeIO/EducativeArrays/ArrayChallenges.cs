@@ -4,6 +4,63 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+
+        public static void ReArrange2(int[] arr)
+        {
+            int j = 0;
+            for(int i = 0; i<arr.Length; i++)
+            {
+                if(arr[i] < 0)
+                {
+                    if(i != j)
+                    {
+                        int temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                    }
+                    j++;
+                }
+            }
+        }
+
+        public static void ReArrange(int[] arr)
+        {
+            int i = 1;
+            while(i < arr.Length)
+            {
+                if (i != 0 && arr[i - 1] >= 0 && arr[i] < 0)
+                {
+                    int temp = arr[i];
+                    arr[i] = arr[i - 1];
+                    arr[i - 1] = temp;
+                }
+                else if (i < arr.Length -1 && arr[i] >= 0 && arr[i + 1] < 0)
+                {
+                    int temp = arr[i + 1];
+                    arr[i + 1] = arr[i];
+                    arr[i] = temp;
+                    i--;
+                    continue;
+                }
+                i++;
+            }
+        }
+
+        public static int[] RotateArray(int[] arr)
+        {
+            int n = arr.Length - 1;
+            int lastElement = arr[n];
+
+            for(int i = n; i>0; i--)
+            {
+                arr[i] = arr[i - 1];
+            }
+
+            arr[0] = lastElement;
+
+            return arr;
+        }
+
         public static int FindSecondMaximum(int[] arr)
         {
             int first = int.MinValue;
