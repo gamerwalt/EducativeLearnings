@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducativeIO", "EducativeIO\EducativeIO.csproj", "{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducativeIO", "EducativeIO\EducativeIO.csproj", "{3C33393F-DA7C-4A11-A7BA-96B3DED092AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducativeArrays", "EducativeArrays\EducativeArrays.csproj", "{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducativeArrays", "EducativeArrays\EducativeArrays.csproj", "{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeArrays", "LeetCodeArrays\LeetCodeArrays.csproj", "{AB6EC376-43DD-418F-BC17-67D28CC9725C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducativeArraysNetStandard", "EducativeArraysNetStandard\EducativeArraysNetStandard.csproj", "{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6EC376-43DD-418F-BC17-67D28CC9725C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6EC376-43DD-418F-BC17-67D28CC9725C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6EC376-43DD-418F-BC17-67D28CC9725C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6EC376-43DD-418F-BC17-67D28CC9725C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

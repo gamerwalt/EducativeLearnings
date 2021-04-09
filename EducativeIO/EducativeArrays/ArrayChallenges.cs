@@ -1,9 +1,80 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
 
 namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+        public static int BinarySearch(int[] a, int key)
+        {
+            int max = a.Length;
+            int min = 0;
+
+            return BinarySearch(a, min, max, key);
+        }
+
+        private static int BinarySearch(int[] a, int min, int max, int key)
+        {
+            int mid = min + (max - min) / 2;
+
+            if (min > max || mid >= max) return -1;
+
+            if (a[mid] == key) 
+                return mid;
+            else if (key < a[mid]) 
+                return BinarySearch(a, min, mid, key);
+            else 
+                return BinarySearch(a, mid + 1, max, key);
+        }
+
+        public static int FindMaxSumSubArray(int[] arr)
+        {
+            var currMax = arr[0];
+            var globalMax = arr[0];
+            for(int i = 0; i<arr.Length; i++)
+            {
+                if (currMax < 0)
+                {
+                    currMax = arr[i];
+                }
+                else
+                {
+                    currMax += arr[i];
+                }
+
+                if(currMax > globalMax)
+                {
+                    globalMax = currMax;
+                }
+
+            }
+
+            return currMax;
+        }
+
+        public static void MaxMin(int[] arr)
+        {
+            int i = 0;
+            while(i < arr.Length)
+            {
+                int nextSmallest = arr[i];
+                int nextLargest = arr[arr.Length -1];
+
+                int j = 0;
+                for(j = arr.Length-1; j>i; j--)
+                {
+                    int temp = arr[j-1];
+                    arr[j] = temp;
+                }
+
+                arr[j] = nextLargest;
+                if(i<j) arr[j + 1] = nextSmallest;
+
+                i += 2;
+            }
+        }
 
         public static void ReArrange2(int[] arr)
         {
