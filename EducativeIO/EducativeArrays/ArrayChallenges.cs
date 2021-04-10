@@ -7,6 +7,39 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+
+        public static int BinarySearchRotated(int[] arr, int key)
+        {
+            int start = 0;
+            int end = arr.Length-1;
+            while(start < end)
+            {
+                int midPoint = start + (end - start) / 2;
+                if(arr[midPoint] > arr[end])
+                {
+                    start = midPoint + 1;
+                }
+                else
+                {
+                    end = midPoint;
+                }
+            }
+
+            if(key >= arr[start] && key <= arr[0])
+            {
+                return BinarySearch(arr, start, arr.Length, key);
+            }
+            else if(key >= arr[start] && key >= arr[0])
+            {
+                return BinarySearch(arr, 0, start, key);
+            }
+            else
+            {
+                return -1;
+            }
+
+        }
+
         public static int BinarySearch(int[] a, int key)
         {
             int max = a.Length;
