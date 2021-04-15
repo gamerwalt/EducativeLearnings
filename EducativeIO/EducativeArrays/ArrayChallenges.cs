@@ -8,6 +8,52 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+        public static void QuickSort(int[] arr)
+        {
+            if (arr == null || arr.Length == 0) return;
+
+            QuickSortRecurrsive(arr, 0, arr.Length - 1);
+        }
+
+        private static void QuickSortRecurrsive(int[] arr, int low, int high)
+        {
+            if (high > low)
+            {
+                int pivotIndex = PartitionForQuickSort(arr, low, high);
+
+                QuickSortRecurrsive(arr, low, pivotIndex - 1);
+                QuickSortRecurrsive(arr, pivotIndex + 1, high);
+            }
+                
+        }
+
+        private static int PartitionForQuickSort(int[] arr, int low, int high)
+        {
+            int pivotValue = arr[low];
+            int i = low;
+            int j = high;
+
+            while (i < j)
+            {
+                while (i <= high && arr[i] <= pivotValue) i++;
+                while (arr[j] > pivotValue) j--;
+
+                if (i < j)
+                {
+                    // swap arr[i] and arr[j]
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+
+            arr[low] = arr[j];
+            arr[j] = pivotValue;
+
+            // return the pivot index
+            return j;
+        }
+
         public static List<Pair> MergeIntervals(List<Pair> pairs)
         {
             var result = new List<Pair>();
