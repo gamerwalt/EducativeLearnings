@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Educative.IO.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,6 +8,186 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+        public static List<Pair> MergeIntervals(List<Pair> pairs)
+        {
+            var result = new List<Pair>();
+            var currentInterval = new Pair(pairs[0].first, pairs[0].second);
+
+            result.Add(currentInterval);
+
+            for(int i = 1; i<pairs.Count; i++)
+            {
+                var first = pairs[i].first;
+                var second = pairs[i].second;
+                
+                if(first > currentInterval.first && first > currentInterval.second)
+                {
+                    var newInterval = new Pair(first, second);
+                    result.Add(newInterval);
+                    currentInterval = newInterval;
+                }
+                else if(second > currentInterval.second)
+                {
+                    currentInterval.second = second;
+                }
+                
+            }
+
+            return result;
+        }
+
+        public static Tuple<int, int> FindBuySellStockPrices(int[] arr)
+        {
+            int currentBuy = arr[0];
+            int currentProfit = int.MinValue;
+            int globalSell = arr[1];
+            int globalProfit = globalSell - currentBuy;
+
+            for(int i = 1; i<arr.Length; i++)
+            {
+                currentProfit = GetCurrentProfit(arr[i], currentBuy);
+                if(currentProfit > globalProfit)
+                {
+                    globalProfit = currentProfit;
+                    globalSell = arr[i];
+                }
+                if(arr[i] < currentBuy)
+                {
+                    currentBuy = arr[i];
+                }
+            }
+
+            return Tuple.Create(globalSell - globalProfit, globalSell);
+        }
+
+        private static int GetCurrentProfit(int currentSell, int currentBuy)
+        {
+            return currentSell - currentBuy;
+        }
+
+        public static void MoveZerosToLeft2(int[] arr)
+        {
+            int readIndex = arr.Length - 1;
+            int writeIndex = arr.Length - 1;
+
+            while(readIndex >= 0)
+            {
+                if(arr[readIndex] != 0)
+                {
+                    arr[writeIndex] = arr[readIndex];
+                    writeIndex--;
+                }
+
+                readIndex--;
+            }
+
+            while (writeIndex >= 0)
+            {
+                arr[writeIndex] = 0;
+                writeIndex--;
+            }
+        }
+
+        public static void MoveZerosToLeft(int[] arr)
+        {
+            for(int i = 0; i<arr.Length; i++)
+            {
+                if(arr[i] == 0)
+                {
+                    int j = i;
+                    for(j = i; j>0; j--)
+                    {
+                        arr[j] = arr[j - 1];
+                    }
+                    arr[j] = 0;
+                }
+            }
+        }
+
+        public static int FindLowIndex(int[] arr, int key)
+        {
+            int low = 0;
+            int high = arr.Length - 1;
+            int mid = high / 2;
+
+            while(low <= high)
+            {
+                int middleElement = arr[mid];
+
+                if(middleElement < key)
+                {
+                    low = mid + 1;
+                }
+                else
+                {
+                    high = mid - 1;
+                }
+
+                mid = low + (high - low) / 2;
+            }
+
+            if (low < arr.Length && arr[low] == key)
+            {
+                return low;
+            }
+
+            return -1;
+        }
+
+        public static int FindHighIndex(int[] arr, int key)
+        {
+            int low = 0;
+            int high = arr.Length - 1;
+            int mid = high / 2;
+            while(low<=high)
+            {
+                int middleElement = arr[mid];
+
+                if (middleElement <= key)
+                {
+                    low = mid + 1;
+                }
+                else
+                {
+                    high = mid - 1;
+                }
+
+                mid = low + (high - low) / 2;
+            }
+
+            if (high < arr.Length && arr[high] == key)
+            {
+                return high;
+            }
+
+            return -1;
+        }
+
+        public static int FindLeastCommonNumber(int[] arr1, int[] arr2, int[] arr3)
+        {
+            for(int i = 0; i<arr1.Length; i++)
+            {
+                var toFind = arr1[i];
+                var foundInArray2 = FindResultInArray(arr2, toFind);
+                var foundInArray3 = FindResultInArray(arr3, toFind);
+
+                if (foundInArray2 && foundInArray3) return toFind;
+            }
+
+            return -1;
+        }
+
+        private static bool FindResultInArray(int[] arr, int toFind)
+        {
+            for(int i =0; i<arr.Length; i++)
+            {
+                if (arr[i] < toFind) continue;
+                else if (arr[i] > toFind) return false;
+                else if (arr[i] == toFind) return true;
+            }
+
+            return false;
+        }
 
         public static int BinarySearchRotated(int[] arr, int key)
         {
