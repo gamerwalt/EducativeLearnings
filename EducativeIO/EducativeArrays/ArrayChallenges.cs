@@ -8,6 +8,26 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+        public static void CyclicSort(int[] arr)
+        {
+            for(int i =0; i<arr.Length; i++)
+            {
+                int val = arr[i];
+                if(val - 1 != i)
+                {
+                    SwapWithValueInPlace(arr, i, val - 1);
+                    i--;
+                }
+            }
+        }
+
+        private static void SwapWithValueInPlace(int[] arr, int currentIndex, int supposedIndex)
+        {
+            int temp = arr[currentIndex];
+            arr[currentIndex] = arr[supposedIndex];
+            arr[supposedIndex] = temp;
+        }
+
         public static void QuickSort(int[] arr)
         {
             if (arr == null || arr.Length == 0) return;

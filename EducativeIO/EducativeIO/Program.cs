@@ -10,8 +10,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new int[] {10, 5, 8, 12, 6, 15, 3, 9, 16 };
-            ArrayChallenges.QuickSort(v);
+            var v = new int[] {2, 6, 4, 3, 1, 5 };
+            ArrayChallenges.CyclicSort(v);
         }
     }
 }
