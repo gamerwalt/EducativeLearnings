@@ -10,8 +10,10 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new int[] {2, 6, 4, 3, 1, 5 };
-            ArrayChallenges.CyclicSort(v);
+            var v = new int[] {2, 1, 5, 1, 3, 2 };
+            var k = 3;
+            var result = ArrayChallenges.FindMaxSumSubArray2(k, v);
+            Console.WriteLine(result);
         }
     }
 }

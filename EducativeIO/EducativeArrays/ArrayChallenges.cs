@@ -8,6 +8,59 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+        /// <summary>
+        /// Given an array of positive numbers and a positive number ‘k,’ find the maximum sum of any contiguous subarray of size ‘k’.
+        /// 1. Solution: Loop through the arr,
+        /// 2. To get the last index of the window, use i + k - 1.
+        /// 3. For loop within another loop. The inner loop should only look at the length of i+k-1
+        /// </summary>
+        /// <param name="k"></param>
+        /// <param name="arr"></param>
+        public static int FindMaxSumSubArray(int k, int[] arr)
+        {
+            int maxSum = int.MinValue;
+            for(int i = 0; i<arr.Length; i++)
+            {
+                int currentSum = 0;
+                int windowSize = i + k - 1;
+                if (windowSize > arr.Length - 1) break;
+                for(int j = i; j<=windowSize; j++)
+                {
+                    currentSum = arr[j] + currentSum;
+                }
+                maxSum = Math.Max(maxSum, currentSum);
+            }
+
+            return maxSum;
+        }
+
+        /// <summary>
+        /// A much better approach for O(n) is to loop, but on each loop, we increase window and keep the sum, but make sure the sum minuses the last
+        /// item in the window going out and adds the new index comin in.
+        /// </summary>
+        /// <param name="k"></param>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int FindMaxSumSubArray2(int k, int[] arr)
+        {
+            int windowSum = 0;
+            int maxSum = 0;
+            int windowStart = 0;
+            for(int windowEnd = 0; windowEnd < arr.Length; windowEnd++)
+            {
+                windowSum += arr[windowEnd];
+
+                if(windowEnd >= k-1)
+                {
+                    maxSum = Math.Max(maxSum, windowSum);
+                    windowSum -= arr[windowStart];
+                    windowStart++;
+                }
+            }
+
+            return maxSum;
+        }
+
         public static void CyclicSort(int[] arr)
         {
             for(int i =0; i<arr.Length; i++)
