@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CodingInterviewPatterns
 {
@@ -45,6 +47,11 @@ namespace CodingInterviewPatterns
         /// <returns></returns>
         public static int FindMinSubArray(int s, int[] arr)
         {
+            /// Solution:
+            /// keep looping and then getting the sum
+            /// if at any point, the sum is greater than or equal to S, that's our queue to get the minimum lenght of the contigous sub array
+            /// we find the min between the current min and then the current window we are in.
+            /// the current window is always the end pointer - start pointer + 1
             int windowSum = 0;
             int minLength = int.MaxValue;
             int start = 0;
@@ -60,6 +67,49 @@ namespace CodingInterviewPatterns
             }
 
             return minLength == int.MaxValue ? 0 : minLength;
+        }
+
+        /// <summary>
+        /// Find the length of the Longest substring in a string with no more than K distinct characters
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static int LongestSubstringKDistinct(string str, int k)
+        {
+            ///Solution: Loop through the string
+            ///For each character, add it to a map, increase the frequency when you add a new character
+            ///if for any reason, the total distinct characters in the map is greater than K, then we have to start checking our window
+            ///decrease the window while the distinct characters are greater than K. In this situation, when the window shrinks, we remove the 
+            ///character from the map or we decrease it's frequency in the map. If it ever gets to 0, we remove it from the map
+            var characterMap = new Dictionary<char, int>();
+            int start = 0;
+            int maxLength = int.MinValue;
+            for(int end = 0; end<str.Length; end++)
+            {
+                var currentChar = str[end];
+                characterMap.TryGetValue(currentChar, out var charCount);
+                charCount++;
+                characterMap[currentChar] = charCount;
+
+                while(characterMap.Count > k)
+                {
+                    var characterGoingOut = str[start];
+                    characterMap.TryGetValue(characterGoingOut, out var characterGoingOutCount);
+                    characterGoingOutCount--;
+                    characterMap[characterGoingOut] = characterGoingOutCount;
+                    characterMap.TryGetValue(characterGoingOut, out characterGoingOutCount);
+                    if (characterGoingOutCount == 0)
+                    {
+                        characterMap.Remove(characterGoingOut);
+                    }
+                    start++;
+                }
+
+                maxLength = Math.Max(maxLength, end - start + 1);
+            }
+
+            return maxLength;
         }
     }
 }
