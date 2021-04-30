@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeArrays", "LeetCodeA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducativeArraysNetStandard", "EducativeArraysNetStandard\EducativeArraysNetStandard.csproj", "{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Educative.IO.Common", "Educative.IO.Common\Educative.IO.Common.csproj", "{F95B721C-90D4-444E-A1B9-4C8352DC32EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Educative.IO.Common", "Educative.IO.Common\Educative.IO.Common.csproj", "{F95B721C-90D4-444E-A1B9-4C8352DC32EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingInterviewPatterns", "CodingInterviewPatterns\CodingInterviewPatterns.csproj", "{341B4BC7-431A-4FE4-810A-AEFA918D17B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F95B721C-90D4-444E-A1B9-4C8352DC32EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F95B721C-90D4-444E-A1B9-4C8352DC32EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F95B721C-90D4-444E-A1B9-4C8352DC32EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{341B4BC7-431A-4FE4-810A-AEFA918D17B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{341B4BC7-431A-4FE4-810A-AEFA918D17B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{341B4BC7-431A-4FE4-810A-AEFA918D17B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{341B4BC7-431A-4FE4-810A-AEFA918D17B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

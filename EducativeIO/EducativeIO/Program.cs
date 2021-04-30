@@ -3,6 +3,7 @@ using EducativeArrays;
 using LeetCodeArrays;
 using System;
 using System.Collections.Generic;
+using CodingInterviewPatterns;
 
 namespace EducativeIO
 {
@@ -10,9 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new int[] {2, 1, 5, 1, 3, 2 };
-            var k = 3;
-            var result = ArrayChallenges.FindMaxSumSubArray2(k, v);
+            var v = new int[] { 2, 1, 5, 2, 3, 2 };
+            var result = SlidingWindow.FindMinSubArray(7, v);
             Console.WriteLine(result);
         }
     }

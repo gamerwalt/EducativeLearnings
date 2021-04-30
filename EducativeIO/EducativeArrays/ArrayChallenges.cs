@@ -8,6 +8,32 @@ namespace EducativeArrays
 {
     public class ArrayChallenges
     {
+        public static int[] MakeSquares(int[] arr)
+        {
+            if (arr == null || arr.Length == 0) throw new ArgumentException("The array cannot be null or it must contain elements");
+            int[] newArray = new int[arr.Length];
+            int pointer1 = 0;
+            int pointer2 = arr.Length - 1;
+            int counter = arr.Length - 1;
+            while(pointer1 < pointer2)
+            {
+                if(Math.Abs(arr[pointer1]) > Math.Abs(arr[pointer2]))
+                {
+                    newArray[counter] = arr[pointer1] * arr[pointer1];
+                    pointer1++;
+                }
+                else
+                {
+                    newArray[counter] = arr[pointer2] * arr[pointer2];
+                    pointer2--;
+                }
+
+                counter--;
+            }
+
+            return newArray;
+        }
+
         /// <summary>
         /// Given an array of positive numbers and a positive number ‘k,’ find the maximum sum of any contiguous subarray of size ‘k’.
         /// 1. Solution: Loop through the arr,

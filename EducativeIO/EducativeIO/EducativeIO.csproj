@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CodingInterviewPatterns\CodingInterviewPatterns.csproj" />
     <ProjectReference Include="..\Educative.IO.Common\Educative.IO.Common.csproj" />
     <ProjectReference Include="..\EducativeArraysNetStandard\EducativeArraysNetStandard.csproj" />
     <ProjectReference Include="..\EducativeArrays\EducativeArrays.csproj" />
