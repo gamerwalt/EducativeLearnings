@@ -11,8 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new int[] { 2, 1, 5, 2, 3, 2 };
-            var result = SlidingWindow.LongestSubstringKDistinct("cbbebi", 3);
+            var v = new char[] { 'A', 'B', 'C', 'B', 'B', 'C' };
+            var result = SlidingWindow.FindLengthOfMaxFruitsInEachBasket(v);
             Console.WriteLine(result);
         }
     }

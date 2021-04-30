@@ -111,5 +111,51 @@ namespace CodingInterviewPatterns
 
             return maxLength;
         }
+
+        /// <summary>
+        /// Given an array of characters where each character represents a fruit tree, you are given two baskets, 
+        /// and your goal is to put maximum number of fruits in each basket. The only restriction is that each basket 
+        /// can have only one type of fruit.
+        /// You can start with any tree, but you can’t skip a tree once you have started.You will pick one fruit from 
+        /// each tree until you cannot, i.e., you will stop when you have to pick from a third fruit type.
+        /// Write a function to return the maximum number of fruits in both baskets.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int FindLengthOfMaxFruitsInEachBasket(char[] arr)
+        {
+            ///Solution: Loop through the array
+            ///while looping, we keep a count of the number of characters we have seen in a map
+            ///if we have more than 2 fruits, we want to slide the window forward until we have only 2 in the map
+            ///while that has happened, we keep counting the number of fruits we are picking and putting into the map
+            var characterMap = new Dictionary<char, int>();
+            int start = 0;
+            int maxLength = int.MinValue;
+            for (int end = 0; end < arr.Length; end++)
+            {
+                var currentChar = arr[end];
+                characterMap.TryGetValue(currentChar, out var charCount);
+                charCount++;
+                characterMap[currentChar] = charCount;
+
+                while (characterMap.Count > 2)
+                {
+                    var characterGoingOut = arr[start];
+                    characterMap.TryGetValue(characterGoingOut, out var characterGoingOutCount);
+                    characterGoingOutCount--;
+                    characterMap[characterGoingOut] = characterGoingOutCount;
+                    characterMap.TryGetValue(characterGoingOut, out characterGoingOutCount);
+                    if (characterGoingOutCount == 0)
+                    {
+                        characterMap.Remove(characterGoingOut);
+                    }
+                    start++;
+                }
+
+                maxLength = Math.Max(maxLength, end - start + 1);
+            }
+
+            return maxLength;
+        }
     }
 }
