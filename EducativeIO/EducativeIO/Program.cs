@@ -11,8 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = "aabccbb";
-            var result = SlidingWindow.LongestSubstringWithSameLettersAfterReplacement(v, 2);
+            var v = "abccde";
+            var result = SlidingWindow.LongestSubstringWithSameLettersAfterReplacement(v, 1);
             Console.WriteLine(result);
         }
     }

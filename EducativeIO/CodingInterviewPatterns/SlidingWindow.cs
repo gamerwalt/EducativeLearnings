@@ -209,22 +209,41 @@ namespace CodingInterviewPatterns
         public static int LongestSubstringWithSameLettersAfterReplacement(string str, int k)
         {
             ///The Solution is to loop through the string
-            ///the moment we get a new character, and we still have operations to change/replace a character, we do it and remove 1 from operations
-            ///we get the length and then continue, the moment we have no operations anymore, we move the sliding window start position
+            ///we get the right character and insert into a map
+            ///we get the maximum character of that map within the window
+            ///if the size of the window - maximum character count is greater than k, meaning we have more characters, 
+            ///we have to decrease the window and decrease the frequency of that character
             int maxLength = int.MinValue;
             int windowStart = 0;
-            int operations = k;
             var frequencyMap = new Dictionary<char, int>();
-            char previousCharacter;
+            int maxRepeatingCharacterCount = 0;
 
             for(int windowEnd = 0; windowEnd < str.Length; windowEnd++)
             {
-                var currentCharacter = str[windowEnd];
+                var rightChar = str[windowEnd];
+                frequencyMap.TryGetValue(rightChar, out var charCount);
+                charCount++;
+                frequencyMap[rightChar] = charCount;
+                maxRepeatingCharacterCount = Math.Max(maxRepeatingCharacterCount, charCount);
 
+                if(GetWindowSize(windowEnd, windowStart) - maxRepeatingCharacterCount > k)
+                {
+                    var leftChar = str[windowStart];
+                    frequencyMap.TryGetValue(leftChar, out charCount);
+                    charCount--;
+                    frequencyMap[leftChar] = charCount;
+                    windowStart++;
+                }
+                
                 maxLength = Math.Max(maxLength, windowEnd - windowStart + 1);
             }
 
             return maxLength;
+        }
+
+        private static int GetWindowSize(int windowEnd, int windowStart)
+        {
+            return windowEnd - windowStart + 1;
         }
     }
 }
