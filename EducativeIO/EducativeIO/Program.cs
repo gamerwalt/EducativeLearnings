@@ -11,8 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new char[] { 'A', 'B', 'C', 'B', 'B', 'C' };
-            var result = SlidingWindow.FindLengthOfMaxFruitsInEachBasket(v);
+            var v = "aabccbb";
+            var result = SlidingWindow.LongestSubstringWithSameLettersAfterReplacement(v, 2);
             Console.WriteLine(result);
         }
     }

@@ -157,5 +157,74 @@ namespace CodingInterviewPatterns
 
             return maxLength;
         }
+
+        /// <summary>
+        /// Given a string, find the length of the longest substring, which has no repeating characters.
+        /// </summary>
+        /// <param name="str"></param>
+        public static int FindLengthOfNoRepeatSubString(string str)
+        {
+            ///Solution:
+            ///In this scenario, you want to create a map to keep track of the frequency of characterfs
+            ///when we notice that a character is going to be more than 1, we take the current length of the string in the window
+            ///we move the window forward and keep checking for the max length
+
+            int maxLength = int.MinValue;
+            int start = 0;
+            var frequencyMap = new Dictionary<char, int>();
+            for(int end = 0; end<str.Length; end++)
+            {
+                var currentCharacter = str[end];
+                frequencyMap.TryGetValue(currentCharacter, out var charCount);
+                charCount++;
+                frequencyMap[currentCharacter] = charCount;
+                
+                while(charCount > 1)
+                {
+                    var characterGoingOut = str[start];
+                    frequencyMap.TryGetValue(characterGoingOut, out var characterGoingOutCount);
+                    characterGoingOutCount--;
+                    frequencyMap[characterGoingOut] = characterGoingOutCount;
+                    if(characterGoingOutCount == 0)
+                    {
+                        frequencyMap.Remove(characterGoingOut);
+                    }
+
+                    frequencyMap.TryGetValue(currentCharacter, out charCount);
+                    start++;
+                }
+                maxLength = Math.Max(maxLength, end - start + 1);
+            }
+
+            return maxLength;
+        }
+
+        /// <summary>
+        /// Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter, 
+        /// find the length of the longest substring having the same letters after replacement.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static int LongestSubstringWithSameLettersAfterReplacement(string str, int k)
+        {
+            ///The Solution is to loop through the string
+            ///the moment we get a new character, and we still have operations to change/replace a character, we do it and remove 1 from operations
+            ///we get the length and then continue, the moment we have no operations anymore, we move the sliding window start position
+            int maxLength = int.MinValue;
+            int windowStart = 0;
+            int operations = k;
+            var frequencyMap = new Dictionary<char, int>();
+            char previousCharacter;
+
+            for(int windowEnd = 0; windowEnd < str.Length; windowEnd++)
+            {
+                var currentCharacter = str[windowEnd];
+
+                maxLength = Math.Max(maxLength, windowEnd - windowStart + 1);
+            }
+
+            return maxLength;
+        }
     }
 }
