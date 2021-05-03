@@ -241,6 +241,39 @@ namespace CodingInterviewPatterns
             return maxLength;
         }
 
+        /// <summary>
+        /// Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, 
+        /// find the length of the longest contiguous subarray having all 1s
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static int LongestSubarrayWithOnesAfterReplacement(int[] arr, int k)
+        {
+            ///Solution: Keep adding to the window and taking a count of the 1s
+            ///while doing that, we check the maxLength of the window
+            ///to check if we have to shrink the window, we get the windowSize and minus the maxOnes and make sure it's not more than k
+            ///Input: Array=[0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], k=2
+            ///Output: 6
+            int maxLength = int.MinValue;
+            int windowStart = 0;
+            int maxOnes = 0;
+            for(int windowEnd = 0; windowEnd < arr.Length; windowEnd++)
+            {
+                if (arr[windowEnd] == 1) maxOnes++;
+                
+                if(GetWindowSize(windowEnd, windowStart) - maxOnes > k)
+                {
+                    if (arr[windowStart] == 1) maxOnes--;
+                    windowStart++;
+                }
+
+                maxLength = Math.Max(maxLength, GetWindowSize(windowEnd, windowStart));
+            }
+
+            return maxLength;
+        }
+
         private static int GetWindowSize(int windowEnd, int windowStart)
         {
             return windowEnd - windowStart + 1;
