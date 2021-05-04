@@ -12,7 +12,7 @@ namespace EducativeIO
         static void Main(string[] args)
         {
             var v = new int[] { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1 };
-            var result = SlidingWindow.StringAnagrams("abbcabc", "abc");
+            var result = SlidingWindow.FindMinimumWindowContainingSubString("aabdec", "abc");
             foreach(var item in result)
                 Console.WriteLine(item);
         }

@@ -387,6 +387,62 @@ namespace CodingInterviewPatterns
             return results;
         }
 
+        public static string FindMinimumWindowContainingSubString(string str, string pattern)
+        {
+            //once we get a match of the pattern, get the size of the window and store the size, plus the actual substring
+            var frequencyMap = new Dictionary<char, int>();
+            int matched = 0;
+            int windowStart = 0;
+            int minLength = str.Length + 1;
+            int subStringStart = 0;
+
+            foreach(var leftCharacter in pattern)
+            {
+                frequencyMap.TryGetValue(leftCharacter, out var leftCharCount);
+                if(frequencyMap.ContainsKey(leftCharacter))
+                {
+                    frequencyMap[leftCharacter] = leftCharCount + 1;
+                }
+                else
+                {
+                    frequencyMap[leftCharacter] = 1;
+                }
+            }
+
+            for(int windowEnd = 0; windowEnd<str.Length; windowEnd++)
+            {
+                var currentChar = str[windowEnd];
+                if(frequencyMap.ContainsKey(currentChar))
+                {
+                    frequencyMap.TryGetValue(currentChar, out var currentCharCount);
+                    frequencyMap[currentChar] = currentCharCount - 1;
+                    if (frequencyMap[currentChar] >= 0) matched++;
+                }
+
+                while(matched == pattern.Length)
+                {
+                    var windowSize = GetWindowSize(windowEnd, windowStart);
+                    if (minLength > windowSize)
+                    {
+                        minLength = windowSize;
+                        subStringStart = windowStart;
+                    }
+
+                    var leftChar = str[windowStart];
+                    windowStart++;
+                    if(frequencyMap.ContainsKey(leftChar))
+                    {
+                        frequencyMap.TryGetValue(leftChar, out var leftCharCount);
+                        if (leftCharCount == 0) matched--;
+
+                        frequencyMap[leftChar] = leftCharCount + 1;
+                    }
+                }
+            }
+
+            return minLength > str.Length ? "" : str.Substring(subStringStart, minLength);
+        }
+
         private static int GetWindowSize(int windowEnd, int windowStart)
         {
             return windowEnd - windowStart + 1;
