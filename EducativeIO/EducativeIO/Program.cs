@@ -12,8 +12,9 @@ namespace EducativeIO
         static void Main(string[] args)
         {
             var v = new int[] { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1 };
-            var result = SlidingWindow.PermutationInAString("aaacb", "abc");
-            Console.WriteLine(result);
+            var result = SlidingWindow.StringAnagrams("abbcabc", "abc");
+            foreach(var item in result)
+                Console.WriteLine(item);
         }
     }
 }

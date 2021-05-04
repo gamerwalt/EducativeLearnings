@@ -338,21 +338,51 @@ namespace CodingInterviewPatterns
         /// <param name="str"></param>
         /// <param name="patternToFind"></param>
         /// <returns></returns>
-        public static List<string> StringAnagrams(string str, string patternToFind)
+        public static List<int> StringAnagrams(string str, string patternToFind)
         {
-            ///Solution is to loop through the pattern and create a hash map of the characters with their frequencies
-            ///Then loop through the string/haystack
-            ///if we find the character, we remove one count from the frequency map and add to a matched counter
-            ///if the matchedCounter is equal to the frequency's count, we take note of the index (windowEnd)
-            ///in a situation where we need to decrease the window because the windowSize is greater than the pattern's length - 1,
-            ///we get the character going out, and if the frequency map contains this character, increase the count of the character.
-            ///However, if the count of the character is 0 we take away from the mtachedCount;
             var frequencyMap = new Dictionary<char, int>();
             int matched = 0;
             int windowStart = 0;
-            var results = new List<string>();
+            var results = new List<int>();
 
+            foreach(var leftCharacter in patternToFind)
+            {
+                frequencyMap.TryGetValue(leftCharacter, out var leftCharCount);
+                if(frequencyMap.ContainsKey(leftCharacter))
+                {
+                    frequencyMap[leftCharacter] = leftCharCount + 1;
+                }
+                else
+                {
+                    frequencyMap[leftCharacter] = 1;
+                }
+            }
 
+            for(int windowEnd = 0; windowEnd < str.Length; windowEnd++)
+            {
+                var leftChar = str[windowEnd];
+                if(frequencyMap.ContainsKey(leftChar))
+                {
+                    frequencyMap.TryGetValue(leftChar, out var leftCharCount);
+                    frequencyMap[leftChar] = leftCharCount - 1;
+                    if (frequencyMap[leftChar] == 0) matched++;
+                }
+
+                if (matched == patternToFind.Length) results.Add(windowStart);                
+
+                if(GetWindowSize(windowEnd, windowStart) > patternToFind.Length - 1)
+                {
+                    var rightChar = str[windowStart];
+                    windowStart++;
+                    if(frequencyMap.ContainsKey(rightChar))
+                    {
+                        frequencyMap.TryGetValue(rightChar, out var rightCharCount);
+                        if (rightCharCount == 0) matched--;
+
+                        frequencyMap[rightChar] = rightCharCount + 1;
+                    }
+                }
+            }
 
             return results;
         }
