@@ -274,6 +274,63 @@ namespace CodingInterviewPatterns
             return maxLength;
         }
 
+        /// <summary>
+        /// Given a string and a pattern, find out if the string contains any permutation of the pattern.
+        /// Input: String="oidbcaf", Pattern="abc"
+        /// Output: true
+        /// Explanation: The string contains "bca" which is a permutation of the given pattern.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="patternToFind"></param>
+        /// <returns></returns>
+        public static bool PermutationInAString(string str, string patternToFind)
+        {
+            var frequencyMap = new Dictionary<char, int>();
+            int matched = 0;
+            int windowStart = 0;
+            foreach(var character in patternToFind)
+            {
+                if(frequencyMap.ContainsKey(character))
+                {
+                    frequencyMap.TryGetValue(character, out var charCount);
+                    frequencyMap[character] = charCount + 1;
+                }
+                else
+                {
+                    frequencyMap[character] = 1;
+                }
+            }
+
+            for(int windowEnd = 0; windowEnd<str.Length; windowEnd++)
+            {
+                var currentChar = str[windowEnd];
+                if(frequencyMap.ContainsKey(currentChar))
+                {
+                    frequencyMap.TryGetValue(currentChar, out var currentCharCount);
+                    frequencyMap[currentChar] = currentCharCount - 1;
+                    if (frequencyMap[currentChar] == 0) matched++;
+                }
+
+                if (matched == frequencyMap.Count)
+                    return true;
+
+                if(GetWindowSize(windowEnd, windowStart) > patternToFind.Length - 1)
+                {
+                    var leftChar = str[windowStart];
+                    windowStart++;
+                    if (frequencyMap.ContainsKey(leftChar))
+                    {
+                        frequencyMap.TryGetValue(leftChar, out var leftCharCount);
+                        if (leftCharCount == 0) matched--;
+
+                        frequencyMap[leftChar] = leftCharCount++;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private static int GetWindowSize(int windowEnd, int windowStart)
         {
             return windowEnd - windowStart + 1;

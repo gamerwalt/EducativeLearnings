@@ -12,7 +12,7 @@ namespace EducativeIO
         static void Main(string[] args)
         {
             var v = new int[] { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1 };
-            var result = SlidingWindow.LongestSubarrayWithOnesAfterReplacement(v, 3);
+            var result = SlidingWindow.PermutationInAString("aaacb", "abc");
             Console.WriteLine(result);
         }
     }
