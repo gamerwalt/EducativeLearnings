@@ -331,6 +331,32 @@ namespace CodingInterviewPatterns
             return false;
         }
 
+        /// <summary>
+        /// Given a string and a pattern, find all anagrams of the pattern in the given string.
+        /// Write a function to return a list of starting indices of the anagrams of the pattern in the given string.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="patternToFind"></param>
+        /// <returns></returns>
+        public static List<string> StringAnagrams(string str, string patternToFind)
+        {
+            ///Solution is to loop through the pattern and create a hash map of the characters with their frequencies
+            ///Then loop through the string/haystack
+            ///if we find the character, we remove one count from the frequency map and add to a matched counter
+            ///if the matchedCounter is equal to the frequency's count, we take note of the index (windowEnd)
+            ///in a situation where we need to decrease the window because the windowSize is greater than the pattern's length - 1,
+            ///we get the character going out, and if the frequency map contains this character, increase the count of the character.
+            ///However, if the count of the character is 0 we take away from the mtachedCount;
+            var frequencyMap = new Dictionary<char, int>();
+            int matched = 0;
+            int windowStart = 0;
+            var results = new List<string>();
+
+
+
+            return results;
+        }
+
         private static int GetWindowSize(int windowEnd, int windowStart)
         {
             return windowEnd - windowStart + 1;
