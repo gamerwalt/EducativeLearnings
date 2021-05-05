@@ -11,9 +11,18 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new string[] { "cat", "fox" };
-            var result = SlidingWindow.FindWordConcatenation("catcatfoxfox", v);
+            var v = new int[] { 1, 2, 3, 4, 6 };
+            var target = 6;
+            var result = TwoPointers.PairWithTargetSumBruteForce(v, target);
             foreach(var item in result)
+                Console.WriteLine(item);
+
+            result = TwoPointers.PairWithTargetSumWith2Pointers(v, target);
+            foreach(var item in result)
+                Console.WriteLine(item);
+
+            result = TwoPointers.PairWithTargetSumWithHashMap(v, target);
+            foreach (var item in result)
                 Console.WriteLine(item);
         }
     }
