@@ -443,6 +443,57 @@ namespace CodingInterviewPatterns
             return minLength > str.Length ? "" : str.Substring(subStringStart, minLength);
         }
 
+        public static List<int> FindWordConcatenation(string str, string[] words)
+        {
+            var result = new List<int>();
+            var wordFrequencyMap = new Dictionary<string, int>();
+            foreach(var word in words) 
+            {
+                wordFrequencyMap.TryGetValue(word, out var wordCount);
+                if(wordFrequencyMap.ContainsKey(word))
+                {
+                    wordFrequencyMap[word] = wordCount + 1;
+                }
+                else
+                {
+                    wordFrequencyMap[word] = 1;
+                }
+            }
+
+            int wordsCount = words.Length;
+            int wordLength = words[0].Length;
+
+            var length = str.Length - (wordsCount * wordLength);
+            Console.WriteLine(length);
+            for (int i = 0; i<= length; i++)
+            {
+                var wordsSeen = new Dictionary<string, int>();
+                for(int j = 0; j <wordsCount; j++)
+                {
+                    int nextWordIndex = i + j * wordLength;
+                    Console.WriteLine($"Next word Index: {nextWordIndex}");
+                    var word = str.Substring(nextWordIndex, wordLength);
+
+                    if (!wordFrequencyMap.ContainsKey(word))
+                        break;
+
+                    wordsSeen.TryGetValue(word, out var wordSeenCount);
+                    wordsSeen[word] = wordSeenCount + 1;
+
+                    wordFrequencyMap.TryGetValue(word, out var wordCount);
+                    if (wordsSeen[word] > wordCount)
+                        break;
+
+                    if (j + 1 == wordsCount)
+                        result.Add(i);
+                }
+            }
+
+            
+
+            return result;
+        }
+
         private static int GetWindowSize(int windowEnd, int windowStart)
         {
             return windowEnd - windowStart + 1;

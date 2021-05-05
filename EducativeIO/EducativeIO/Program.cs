@@ -11,8 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new int[] { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1 };
-            var result = SlidingWindow.FindMinimumWindowContainingSubString("aabdec", "abc");
+            var v = new string[] { "cat", "fox" };
+            var result = SlidingWindow.FindWordConcatenation("catcatfoxfox", v);
             foreach(var item in result)
                 Console.WriteLine(item);
         }
