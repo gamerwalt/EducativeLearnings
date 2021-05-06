@@ -96,5 +96,41 @@ namespace CodingInterviewPatterns
 
             return result;
         }
+
+        /// <summary>
+        /// Given an array of sorted numbers, remove all duplicates from it. 
+        /// You should not use any extra space; after removing the duplicates in-place return the length of the subarray that has no duplicate in it.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int RemoveDuplicates(int[] arr)
+        {
+            var slowPointer = 1;
+            for(int i = 1; i < arr.Length; i++)
+            {
+                if(arr[slowPointer - 1] != arr[i])
+                {
+                    arr[slowPointer] = arr[i];
+                    slowPointer++;
+                }
+            }
+
+            return slowPointer;
+        }
+
+        public static int RemoveKey(int[] arr, int key)
+        {
+            var nextPointer = 0;
+            for (int i = 0; i<arr.Length; i++)
+            {
+                if(arr[i] != key)
+                {
+                    arr[nextPointer] = arr[i];
+                    nextPointer++;
+                }
+            }
+
+            return nextPointer;
+        }
     }
 }
