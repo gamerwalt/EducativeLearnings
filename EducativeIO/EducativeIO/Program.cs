@@ -11,13 +11,10 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { -3, 0, 1, 2, -1, 1, -2 };
-            var result = TwoPointers.TripletSumToZero(arr);
-            foreach(var item in result)
-                foreach(var i in item)
-                    Console.WriteLine(i);
+            var arr = new int[] { 1, 0, 1, 1 };
+            var result = TwoPointers.TripletSumCloseToTarget(arr, 100);
 
-            
+            Console.WriteLine(result);
         }
     }
 }

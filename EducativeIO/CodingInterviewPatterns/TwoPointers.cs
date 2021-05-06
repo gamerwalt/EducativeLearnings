@@ -218,5 +218,50 @@ namespace CodingInterviewPatterns
                     rightPointer--;
             }
         }
+
+        /// <summary>
+        /// Given an array of unsorted numbers and a target number, find a triplet in the array whose sum is as close to the target number as possible, 
+        /// return the sum of the triplet. 
+        /// If there are more than one such triplet, return the sum of the triplet with the smallest sum.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="targetSum"></param>
+        /// <returns></returns>
+        public static int TripletSumCloseToTarget(int[] arr, int targetSum)
+        {
+            var minSumDifference = int.MaxValue;
+            if (arr.Length == 0 || arr == null) return -1;
+
+            Array.Sort(arr);
+
+            for(int i = 0; i<arr.Length - 2; i++)
+            {
+                var firstNumber = arr[i];
+                var leftPointer = i + 1;
+                var rightPointer = arr.Length - 1;
+
+                while(leftPointer < rightPointer)
+                {
+                    int targetDifference = targetSum - firstNumber - arr[leftPointer] - arr[rightPointer];
+                    
+                    if (targetDifference == 0) //we found an exact match to the targetsum
+                        return targetSum - targetDifference;
+
+                    if(Math.Abs(targetDifference) < Math.Abs(minSumDifference)
+                        || (Math.Abs(targetDifference) == Math.Abs(minSumDifference)) && targetDifference > minSumDifference) //not sure of this line
+                    {
+                        minSumDifference = targetDifference;
+                    }
+
+                    if (targetDifference > 0)
+                        leftPointer++;
+                    else
+                        rightPointer--;
+                }
+            }
+
+            return targetSum - minSumDifference;
+
+        }
     }
 }
