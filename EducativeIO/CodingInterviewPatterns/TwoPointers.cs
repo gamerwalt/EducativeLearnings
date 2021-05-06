@@ -166,5 +166,57 @@ namespace CodingInterviewPatterns
 
             return squaredArray;
         }
+        /// <summary>
+        /// Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static List<List<int>> TripletSumToZero(int[] arr)
+        {
+            ///Solution
+            ///Sort the array first. Then loop through the array, however, for each loop, we get the current index and do a search pair on the remaining
+            ///indices. We have to be careful of duplicates as well, so we check if we have a duplicate and just skip
+            ///in the SearchPair function which is close to the 2 sum, we have to make sure that if we have the same element/value on both sides, we skip
+            ///as well
+            Array.Sort(arr);
+            var results = new List<List<int>>();
+            var found = new List<int>();
+
+            for(int i = 0; i<arr.Length -2; i++)
+            {
+                if (i > 0 && arr[i] == arr[i - 1]) continue;
+
+                var targetSum = -arr[i]; //This will negate a positive number or make a positive number negative
+                var leftPointer = i + 1; //we start searching from the next number in the array
+                SearchPair(arr, targetSum, leftPointer, results);
+            }
+
+            return results;
+        }
+
+        private static void SearchPair(int[] arr, int targetSum, int leftPointer, List<List<int>> results)
+        {
+            int rightPointer = arr.Length - 1; //let's get the right pointer which will always be the last index
+
+            while(leftPointer < rightPointer)
+            {
+                int currentSum = arr[leftPointer] + arr[rightPointer];
+                if (currentSum == targetSum)
+                {
+                    results.Add(new List<int>() { -targetSum, arr[leftPointer], arr[rightPointer] });
+                    leftPointer++;
+                    rightPointer--;
+                    //try to skip the same element on both sides
+                    while (leftPointer < rightPointer && arr[leftPointer] == arr[leftPointer - 1])
+                        leftPointer++;
+                    while (leftPointer < rightPointer && arr[rightPointer] == arr[rightPointer + 1])
+                        rightPointer--;
+                }
+                else if (targetSum > currentSum)
+                    leftPointer++;
+                else
+                    rightPointer--;
+            }
+        }
     }
 }
