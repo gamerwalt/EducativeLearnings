@@ -132,5 +132,39 @@ namespace CodingInterviewPatterns
 
             return nextPointer;
         }
+
+        /// <summary>
+        /// Given a sorted array, create a new array containing squares of all the numbers of the input array in the sorted order.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int[] SortedArraySquares(int[] arr)
+        {
+            int leftPointer = 0;
+            int rightPointer = arr.Length - 1;
+            int counter = rightPointer;
+
+            var squaredArray = new int[arr.Length];
+
+            while (leftPointer < rightPointer)
+            {
+                var leftNumber = Math.Abs(arr[leftPointer]);
+                var rightNumber = Math.Abs(arr[rightPointer]);
+                if(rightNumber > leftNumber)
+                {
+                    squaredArray[counter] = rightNumber * rightNumber;
+                    rightPointer--;
+                }
+                else
+                {
+                    squaredArray[counter] = leftNumber * leftNumber;
+                    leftPointer++;
+                }
+
+                counter--;
+            }
+
+            return squaredArray;
+        }
     }
 }

@@ -11,18 +11,10 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var v = new int[] { 2, 2, 2, 11 };
-            var result = TwoPointers.RemoveDuplicates(v);
-            Console.WriteLine(result);
-
-            v = new int[] { 2, 3, 3, 3, 6, 9, 9 };
-            result = TwoPointers.RemoveDuplicates(v);
-            Console.WriteLine(result);
-
-            v = new int[] { 3, 2, 3, 6, 3, 10, 9, 3 };
-            var key = 3;
-            result = TwoPointers.RemoveKey(v, key);
-            Console.WriteLine(result);
+            var arr = new int[] { -2, -1, 0, 2, 3 };
+            var result = TwoPointers.SortedArraySquares(arr);
+            foreach(var item in result)
+                Console.WriteLine(item);
         }
     }
 }
