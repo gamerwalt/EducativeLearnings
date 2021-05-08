@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CodingInterviewPatterns
@@ -310,6 +311,88 @@ namespace CodingInterviewPatterns
             }
 
             return count;
+        }
+
+        /// <summary>
+        /// Given an array with positive numbers and a target number, find all of its contiguous subarrays whose product is less than the target number.
+        /// Input: [2, 5, 3, 10], target=30 
+        /// Output: [2], [5], [2, 5], [3], [5, 3], [10]
+        /// Explanation: There are six contiguous subarrays whose product is less than the target.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static List<List<int>> FindSubarrayWithProductLessThanTarget(int[] arr, int target)
+        {
+            if (arr.Length == 0 || arr == null) throw new ArgumentNullException();
+
+            List<List<int>> result = new List<List<int>>();
+            var product = 1;
+            var left = 0;
+
+            for(int right = 0; right<arr.Length; right++)
+            {
+                product *= arr[right];
+
+                while (product >= target && left < arr.Length)
+                {
+                    var divideBy = arr[left];
+                    left++;
+
+                    product /= divideBy;
+                }
+
+                var tempList = new LinkedList<int>();
+
+                for(int i = right; i>=left; i--)
+                {
+                    var value = arr[i];
+                    tempList.AddFirst(value);
+                    result.Add(tempList.ToList());
+                }
+            }
+
+            return result;
+        }
+
+        public static List<List<int>> FindSubArrayWithProductLessThanTargetUsingSlidingWindow(int[] arr, int target)
+        {
+            if (arr.Length == 0 || arr == null) throw new ArgumentNullException();
+
+            List<List<int>> result = new List<List<int>>();
+            var product = 0;
+            var windowStart = 0;
+            var duplicateWindowEnd = 0;
+
+            for(int windowEnd = 0; windowEnd<arr.Length; windowEnd++)
+            {
+                var windowSize = SlidingWindow.GetWindowSize(windowEnd, windowStart);
+
+                if (windowSize <= 1 && arr[windowEnd] < target) result.Add(new List<int>() { arr[windowEnd] });
+
+                duplicateWindowEnd = windowEnd;
+                
+                if(duplicateWindowEnd > 0)
+                {
+                    while (duplicateWindowEnd > windowStart)
+                    {
+                        if (arr[duplicateWindowEnd] < target)
+                            result.Add(new List<int>() { arr[duplicateWindowEnd] });
+
+                        product = arr[duplicateWindowEnd] * arr[windowStart];
+                        if (product >= target)
+                            windowStart++;
+                        else if (product < target)
+                        {
+                            result.Add(new List<int>() { arr[windowStart], arr[duplicateWindowEnd] });
+                            duplicateWindowEnd--;
+                            windowStart++;
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

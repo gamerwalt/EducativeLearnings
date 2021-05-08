@@ -494,7 +494,7 @@ namespace CodingInterviewPatterns
             return result;
         }
 
-        private static int GetWindowSize(int windowEnd, int windowStart)
+        public static int GetWindowSize(int windowEnd, int windowStart)
         {
             return windowEnd - windowStart + 1;
         }
