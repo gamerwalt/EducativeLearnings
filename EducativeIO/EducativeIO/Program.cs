@@ -11,8 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 1, 0, 1, 1 };
-            var result = TwoPointers.TripletSumCloseToTarget(arr, 100);
+            var arr = new int[] { -1, 4, 2, 1, 3 };
+            var result = TwoPointers.TripletWithSmallerSumThanTarget(arr, 5);
 
             Console.WriteLine(result);
         }

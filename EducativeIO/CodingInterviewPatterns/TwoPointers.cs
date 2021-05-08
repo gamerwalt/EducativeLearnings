@@ -263,5 +263,53 @@ namespace CodingInterviewPatterns
             return targetSum - minSumDifference;
 
         }
+
+        /// <summary>
+        /// Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target 
+        /// where i, j, and k are three different indices. Write a function to return the count of such triplets.
+        /// Sample: [-1, 4, 2, 1, 3], target=5 
+        /// Output: 4
+        /// Explanation:There are four triplets whose sum is less than the target: [-1, 1, 4], [-1, 1, 3], [-1, 1, 2], [-1, 2, 3]
+        /// [-1, 1, 2, 3, 4]
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static int TripletWithSmallerSumThanTarget(int[] arr, int target)
+        {
+            int count = -1;
+            if (arr.Length == 0 || arr == null) return -1;
+
+            Array.Sort(arr);
+
+            for(int i = 0; i<arr.Length - 2; i++)
+            {
+                count += SearchPair(arr, target - arr[i], i);
+            }
+
+            return count;
+        }
+
+        private static int SearchPair(int[] arr, int target, int first)
+        {
+            var count = 0;
+            var leftPointer = first + 1;
+            var rightPointer = arr.Length - 1;
+
+            while(leftPointer < rightPointer)
+            {
+                if(arr[leftPointer] + arr[rightPointer] < target)
+                {
+                    count += rightPointer - leftPointer;
+                    leftPointer++;
+                }
+                else
+                {
+                    rightPointer--;
+                }
+            }
+
+            return count;
+        }
     }
 }
