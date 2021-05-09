@@ -11,32 +11,16 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 2, 5, 3, 10 };
-            var result = TwoPointers.FindSubArrayWithProductLessThanTargetUsingSlidingWindow(arr, 30);
+            var arr = new int[] { 4, 1, 2, -1, 1, -3 };
+            var result = TwoPointers.SearchQuadrupletsSumToTarget(arr, 1);
             foreach(var item in result)
-            {
-                foreach(var i in item)
-                {
-                    Console.WriteLine(i);
-                }
-
-                Console.WriteLine("*********************");
-            }
-
-            Console.WriteLine("______________________________________________");
-
-
-            arr = new int[] { 8, 2, 6, 5 };
-            result = TwoPointers.FindSubArrayWithProductLessThanTargetUsingSlidingWindow(arr, 50);
-            foreach (var item in result)
             {
                 foreach (var i in item)
                 {
                     Console.WriteLine(i);
                 }
-
-                Console.WriteLine("*********************");
-            }
+                Console.WriteLine("********************************");
+            } 
         }
     }
 }

@@ -394,5 +394,93 @@ namespace CodingInterviewPatterns
 
             return result;
         }
+
+        /// <summary>
+        /// Given an array containing 0s, 1s and 2s, sort the array in-place. 
+        /// You should treat numbers of the array as objects, hence, we can’t count 0s, 1s, and 2s to recreate the array.
+        /// Input: [1, 0, 2, 1, 0]
+        /// Output: [0 0 1 1 2]
+        /// </summary>
+        /// <param name="arr"></param>
+        public static void DutchFlag(int[] arr)
+        {
+            if (arr == null || arr.Length == 0) return;
+
+            var high = arr.Length - 1;
+            var low = 0;
+            for(int i = 0; i< high;)
+            {
+                if(arr[i] == 0)
+                {
+                    SwapValues(arr, i, low);
+                    low++;
+                    i++;
+                }
+                else if (arr[i] == 1)
+                {
+                    i++;
+                }
+                else
+                {
+                    SwapValues(arr, i, high);
+                    high--;
+                }
+            }
+        }
+
+        public static void SwapValues(int[] arr, int a, int b)
+        {
+            var temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+        }
+
+        /// <summary>
+        /// Given an array of unsorted numbers and a target number, find all unique quadruplets in it, whose sum is equal to the target number.
+        /// Input: [4, 1, 2, -1, 1, -3], target=1
+        /// Output: [-3, -1, 1, 4], [-3, 1, 1, 2]
+        /// Explanation: Both the quadruplets add up to the target.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static List<List<int>> SearchQuadrupletsSumToTarget(int[] arr, int target)
+        {
+            if (arr == null || arr.Length == 0) throw new ArgumentException();
+            var result = new List<List<int>>();
+
+            Array.Sort(arr);
+            var last = arr.Length - 1;
+            for (int i = 0; i<arr.Length -3; i++)
+            {
+                SearchPairs(arr, i, last, target, result);
+            }
+
+            return result;
+        }
+
+        private static void SearchPairs(int[] arr, int firstIndex, int lastIndex, int target, List<List<int>> result)
+        {
+            var firstPointer = firstIndex + 1;
+            var lastPointer = arr.Length - 1;
+            while(firstPointer < lastPointer)
+            {
+                var sum = arr[firstIndex] + arr[lastIndex] + arr[firstPointer] + arr[lastPointer];
+                if(sum == target)
+                {
+                    result.Add(new List<int>() { arr[firstIndex], arr[firstPointer], arr[lastPointer], arr[lastIndex] });
+                    lastPointer--;
+                    firstPointer++;
+                }
+                else if (sum > target)
+                {
+                    lastPointer--;
+                }
+                else
+                {
+                    firstPointer++;
+                }
+            }
+        }
     }
 }
