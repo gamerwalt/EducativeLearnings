@@ -482,5 +482,69 @@ namespace CodingInterviewPatterns
                 }
             }
         }
+
+        /// <summary>
+        /// Given two strings containing backspaces (identified by the character ‘#’), check if the two strings are equal.
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <returns></returns>
+        public static bool BackspaceCompare(string str1, string str2)
+        {
+            ///Solution
+            ///1. Loop through both strings with an index or counter starting from the back
+            ///2. As we go through the strings, we want to get inside them and check. We create a child loop to loop through the strings.
+            /// 2.1 
+            /// We check by looping through the index we are currently on for the string
+            /// and we check if it's a backspace/#, if it is, we add to a backspace count. This gives us how many characters we
+            /// have to skip, TO SKIP, we check if the backspace count is greater than 0 then we reduce the backspace count and at the
+            /// same time WE SKIP by reducing the index counter
+            /// 2.2 
+            /// NOW... if we don't encounter a backspace and the backspace count is not greater than 0, it means we've hit a valid character
+            /// we have to break out of this loop to continue in the parent loop
+            ///3. In the parent loop, we check if the current characteer index of both strings is less than 0
+            /// 3.1 If it is, we return true
+            /// 3.2 If one of the indices is at 0 and the other isn't, we return falce
+            /// 3.3 If the character at both idices at any point is not equal to each other, we return false
+            ///4. We keep the indices moving by setting them to the next index received from the child loop
+            if (string.IsNullOrWhiteSpace(str1) || string.IsNullOrWhiteSpace(str2)) return false;
+
+            var index1 = str1.Length - 1;
+            var index2 = str2.Length - 1;
+            while(index1 >= 0 || index2 >= 0)
+            {
+                var i = GetNextValidCharacterIndex(str1, index1);
+                var j = GetNextValidCharacterIndex(str2, index2);
+
+                if (i < 0 && j < 0) return true;
+
+                if (i < 0 || j < 0) return false;
+
+                if (str1[i] != str2[j]) return false;
+
+                index1 = i - 1;
+                index2 = j - 1;
+            }
+
+            return true;
+        }
+
+        private static int GetNextValidCharacterIndex(string str, int index)
+        {
+            var backspaceCount = 0;
+            while(index >= 0)
+            {
+                if (str[index] == '#')
+                    backspaceCount++;
+                else if (backspaceCount > 0)
+                    backspaceCount--;
+                else
+                    break;
+
+                index--;
+            }
+
+            return index;
+        }
     }
 }
