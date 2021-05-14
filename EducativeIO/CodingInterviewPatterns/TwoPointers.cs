@@ -546,5 +546,50 @@ namespace CodingInterviewPatterns
 
             return index;
         }
+
+        /// <summary>
+        /// Given an array, find the length of the smallest subarray in it which when sorted will sort the whole array.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static int ShortestWindowSort(int[] arr)
+        {
+            if (arr == null) return -1;
+            if (arr.Length < 2) return -1;
+
+            var low = 0;
+            var high = arr.Length - 1;
+
+            while(low <= high)
+            {
+                if (arr[low] > arr[low + 1] && arr[high] < arr[high - 1])
+                    break;
+
+                if (arr[low] < arr[low + 1])
+                    low++;
+
+                if (arr[high] > arr[high - 1])
+                    high--;
+            }
+
+            if (low == arr.Length - 1)
+                return 0;
+
+            var min = int.MaxValue;
+            var max = int.MinValue;
+            for(int i = low; i<= high; i++)
+            {
+                min = Math.Min(min, arr[i]);
+                max = Math.Max(max, arr[i]);
+            }
+
+            while (low > 0 && arr[low - 1] > min)
+                low--;
+
+            while (high < arr.Length - 1 && arr[high + 1] < max)
+                high++;
+
+            return high - low + 1;
+        }
     }
 }

@@ -11,10 +11,9 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var str1 = "xy#z";
-            var str2 = "xzz#";
+            var arr = new int[] { 1, 2, 3 };
 
-            Console.WriteLine(TwoPointers.BackspaceCompare(str1, str2));
+            Console.WriteLine(TwoPointers.ShortestWindowSort(arr));
         }
     }
 }
