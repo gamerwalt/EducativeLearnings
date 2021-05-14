@@ -18,7 +18,7 @@ namespace EducativeIO
             list.next.next.next.next = new ListNode(5);
             list.next.next.next.next.next = new ListNode(6);
             list.next.next.next.next.next.next = list.next.next;
-            Console.WriteLine(FastAndSlow.FindLinkedListCycleLength(list));
+            Console.WriteLine(FastAndSlow.FindCycleStart(list).value);
 
             list = new ListNode(1);
             list.next = new ListNode(2);
@@ -27,7 +27,7 @@ namespace EducativeIO
             list.next.next.next.next = new ListNode(5);
             list.next.next.next.next.next = new ListNode(6);
             list.next.next.next.next.next.next = list.next.next.next;
-            Console.WriteLine(FastAndSlow.FindLinkedListCycleLength(list));
+            Console.WriteLine(FastAndSlow.FindCycleStart(list).value);
         }
     }
 }

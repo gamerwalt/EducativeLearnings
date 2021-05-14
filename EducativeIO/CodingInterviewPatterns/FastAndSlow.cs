@@ -91,7 +91,7 @@ namespace CodingInterviewPatterns
         /// Given the head of a Singly LinkedList that contains a cycle, write a function to find the starting node of the cycle.
         /// </summary>
         /// <param name="list"></param>
-        public ListNode FindCycleStart(ListNode list)
+        public static ListNode FindCycleStart(ListNode list)
         {
             ///Solution
             ///We find the length of the cycle
@@ -99,7 +99,39 @@ namespace CodingInterviewPatterns
             ///we move a 1 pointer 4 nodes up
             ///Then once that's complete, we can then start moving 2 pointers one at a time.
             ///The moment they meet, that's the cycle start
-            ///
+            if (list == null || list.next == null) throw new ArgumentException();
+
+            var fast = list.next; var slow = list.next;
+
+            var cycleLength = 0;
+            while (fast != null && fast.next != null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+
+                if (fast == slow)
+                {
+                    cycleLength = CalculateLength(slow);
+                    break;
+                }
+            }
+
+            fast = list;
+            slow = list;
+            for(int i = 0; i<cycleLength; i++)
+            {
+                fast = fast.next;
+            }
+
+            while(fast != null && fast.next != null)
+            {
+                fast = fast.next;
+                slow = slow.next;
+                if (fast == slow)
+                    return fast;
+            }
+
+            return list;
         }
     }
 }
