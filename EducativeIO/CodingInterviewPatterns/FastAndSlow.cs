@@ -133,5 +133,53 @@ namespace CodingInterviewPatterns
 
             return list;
         }
+
+        /// <summary>
+        /// Any number will be called a happy number if, after repeatedly replacing it with a number equal to the sum 
+        /// of the square of all of its digits, leads us to number ‘1’. 
+        /// All other (not-happy) numbers will never reach ‘1’. 
+        /// Instead, they will be stuck in a cycle of numbers which does not include ‘1’.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static bool FindHappyNumber(int num)
+        {
+            ///Solution: we loop through the sums and create a hashmap to store the results
+            ///as we go, if the sum is 1, we break and return true
+            ///if it's not 1, we add it to our hashmap if we don't find it in there.
+            ///if we do find it in there though, that means, we've come back in a cycle, we should return false
+            var sum = num;
+            var found = new Dictionary<int, bool>();
+
+            while(sum != 1)
+            {
+                sum = GeSquareSum(sum);
+
+                if (sum == 1) return true;
+
+                found.TryGetValue(sum, out var value);
+
+                if (value) return false;
+
+                found[sum] = true;
+            }
+
+            return false;
+        }
+
+        private static int GeSquareSum(int num)
+        {
+            int sum = 0;
+            int digit = 0;
+            while(num > 0)
+            {
+                digit = num % 10;
+                sum += digit * digit;
+
+                num /= 10;
+            }
+
+            return sum;
+        }
     }
 }
