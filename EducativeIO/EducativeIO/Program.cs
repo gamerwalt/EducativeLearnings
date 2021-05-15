@@ -13,6 +13,12 @@ namespace EducativeIO
         {
             var number = 12;
             Console.WriteLine(FastAndSlow.FindHappyNumber(number));
+            Console.WriteLine(FastAndSlow.FindHappyNumber2(number));
+
+
+            number = 23;
+            Console.WriteLine(FastAndSlow.FindHappyNumber(number));
+            Console.WriteLine(FastAndSlow.FindHappyNumber2(number));
         }
     }
 }

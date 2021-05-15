@@ -153,7 +153,7 @@ namespace CodingInterviewPatterns
 
             while(sum != 1)
             {
-                sum = GeSquareSum(sum);
+                sum = GetSquareSum(sum);
 
                 if (sum == 1) return true;
 
@@ -167,7 +167,7 @@ namespace CodingInterviewPatterns
             return false;
         }
 
-        private static int GeSquareSum(int num)
+        private static int GetSquareSum(int num)
         {
             int sum = 0;
             int digit = 0;
@@ -180,6 +180,20 @@ namespace CodingInterviewPatterns
             }
 
             return sum;
+        }
+
+        public static bool FindHappyNumber2(int num)
+        {
+            var fast = num;
+            var slow = num;
+            do
+            {
+                slow = GetSquareSum(slow);
+                fast = GetSquareSum(GetSquareSum(fast));
+
+            } while (fast != slow);
+
+            return slow == 1;
         }
     }
 }
