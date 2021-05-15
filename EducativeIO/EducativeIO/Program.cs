@@ -11,14 +11,8 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var number = 12;
-            Console.WriteLine(FastAndSlow.FindHappyNumber(number));
-            Console.WriteLine(FastAndSlow.FindHappyNumber2(number));
-
-
-            number = 23;
-            Console.WriteLine(FastAndSlow.FindHappyNumber(number));
-            Console.WriteLine(FastAndSlow.FindHappyNumber2(number));
+            var str = "babad";
+            Console.WriteLine(Palindromes.LongestPalindromeInAString(str));
         }
     }
 }

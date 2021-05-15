@@ -195,5 +195,123 @@ namespace CodingInterviewPatterns
 
             return slow == 1;
         }
+
+        /// <summary>
+        /// Given the head of a Singly LinkedList, write a method to return the middle node of the LinkedList.
+        /// If the total number of nodes in the LinkedList is even, return the second middle node.
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public static int FindMiddleOfLinkedList(ListNode head)
+        {
+            if (head == null || head.next == null) return -1;
+
+            var slow = head;
+            var fast = slow;
+
+            while(fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+
+            return slow.value;
+        }
+
+        public static bool IsPalindromeLinkedList(ListNode head)
+        {
+            if (head == null || head.next == null) return false;
+
+            var slow = head;
+            var fast = slow;
+
+            while (fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+
+            var half = ReverseLinkedList(slow);
+            var copyFromHalf = half;
+
+            //compare both halves
+            while (head != null && half != null)
+            {
+                if (head.value != half.value) break;
+                head = head.next;
+                half = half.next;
+            }
+
+            var node = ReverseLinkedList(copyFromHalf);
+
+            if (head == null || half == null) return true;
+
+            return false;
+        }
+
+        private static ListNode ReverseLinkedList(ListNode node)
+        {
+            ListNode previous = null;
+
+            while (node != null)
+            {
+                var temp = node.next;
+
+                node.next = previous;
+                previous = node;
+
+                node = temp;
+            }
+
+            return previous;
+        }
+
+        /// <summary>
+        /// Given the head of a Singly LinkedList, write a method to modify the LinkedList such that the nodes from the 
+        /// second half of the LinkedList are inserted alternately to the nodes from the first half in reverse order. 
+        /// So if the LinkedList has nodes 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null, 
+        /// your method should return 1 -> 6 -> 2 -> 5 -> 3 -> 4 -> null.
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public static ListNode RearrangeLinkedList(ListNode head)
+        {
+            //we get the middle of the list
+            //then we reverse the 2nd half of the list
+            //once we've reversed it, we have a new poitner at the beginning of the main list
+            //and another at the start of the reversed list
+            //then as we move in the main list, we store the next node, but the node of the previous should now point
+            //to the value of the other half's node and we continue to loop
+
+            if (head == null || head.next == null) throw new ArgumentException();
+
+            //Find the middle
+            var slow = head;
+            var fast = slow;
+
+            while (fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+
+            var headSecondHalf = ReverseLinkedList(slow);
+            var headFirstHalf = head;
+
+            while (headFirstHalf != null && headSecondHalf != null)
+            {
+                var temp = headFirstHalf.next;
+                headFirstHalf.next = headSecondHalf;
+                headFirstHalf = temp;
+
+                temp = headSecondHalf.next;
+                headSecondHalf.next = headFirstHalf;
+                headSecondHalf = temp;
+            }
+
+            if (headFirstHalf != null) headFirstHalf.next = null;
+
+            return head;
+        }
     }
 }
