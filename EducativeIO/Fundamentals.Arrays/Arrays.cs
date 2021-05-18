@@ -3,7 +3,7 @@
 namespace Fundamentals
 {
     /// <summary>
-    /// Lookup - O(n)
+    /// Lookup - O(n) or O(1)
     /// Insert - O(n)
     /// Delete - O(1) or O(n) (O(n) if you're not deleting at the end of the array)
     /// </summary>

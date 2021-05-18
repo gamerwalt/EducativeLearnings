@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fundamentals.Arrays\Fundamentals.Arrays.csproj" />
+    <ProjectReference Include="..\Fundamentals.Arrays\Fundamentals.csproj" />
   </ItemGroup>
 
 </Project>

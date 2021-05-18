@@ -7,26 +7,23 @@ namespace Fundamentals.OutputConsole
     {
         static void Main(string[] args)
         {
-            var numbers = new Arrays(3);
-            numbers.Insert(10);
-            numbers.Insert(20);
-            numbers.Insert(30);
-            numbers.Insert(40);
+            var linkedList = new LinkedList();
 
-            numbers.RemoveAt(index: 3);
+            linkedList.AddFirst(30);
+            linkedList.AddFirst(20);
+            linkedList.AddFirst(10);
+            linkedList.AddLast(40);
+            linkedList.AddLast(50);
 
-            numbers.Print();
-            Console.WriteLine("_____________________");
+            var arr = linkedList.ToArray();
+            foreach(var item in arr)
+                Console.WriteLine(item);
 
-            numbers.Insert(40);
-            numbers.Insert(50);
-
-            numbers.RemoveAt(2);
-
-            numbers.Print();
-
-            Console.WriteLine(numbers.IndexOf(item: 40));
-            Console.WriteLine(numbers.IndexOf(item: 30));
+            linkedList.Reverse();
+            arr = linkedList.ToArray();
+            Console.WriteLine("______________");
+            foreach(var item in arr)
+                Console.WriteLine(item);
         }
     }
 }

@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingInterviewPatterns", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackToBasics", "BackToBasics", "{5FD29EF6-5D7B-43E5-BA62-CF82725D41C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundamentals.OutputConsole", "Fundamentals.OutputConsole\Fundamentals.OutputConsole.csproj", "{7BCFD785-2CF8-4158-9BB5-F662237FD80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fundamentals.OutputConsole", "Fundamentals.OutputConsole\Fundamentals.OutputConsole.csproj", "{7BCFD785-2CF8-4158-9BB5-F662237FD80B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundamentals.Arrays", "Fundamentals.Arrays\Fundamentals.Arrays.csproj", "{76AEA379-5B8E-423D-AA2B-59F0D373D306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fundamentals", "Fundamentals.Arrays\Fundamentals.csproj", "{76AEA379-5B8E-423D-AA2B-59F0D373D306}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
