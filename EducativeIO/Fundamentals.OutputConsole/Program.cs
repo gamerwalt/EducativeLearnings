@@ -19,11 +19,11 @@ namespace Fundamentals.OutputConsole
             foreach(var item in arr)
                 Console.WriteLine(item);
 
-            linkedList.Reverse();
-            arr = linkedList.ToArray();
-            Console.WriteLine("______________");
-            foreach(var item in arr)
-                Console.WriteLine(item);
+            Console.WriteLine("*********************");
+            Console.WriteLine(linkedList.FindKthNodeFromEnd(1));
+            Console.WriteLine(linkedList.FindKthNodeFromEnd(2));
+            Console.WriteLine(linkedList.FindKthNodeFromEnd(3));
+            Console.WriteLine(linkedList.FindKthNodeFromEnd(0));
         }
     }
 }

@@ -141,6 +141,7 @@ namespace Fundamentals
             return Count;
         }
 
+        //O(N)
         public int[] ToArray()
         {
             var items = new int[Count];
@@ -158,6 +159,7 @@ namespace Fundamentals
             return items;
         }
 
+        //O(N)
         public void Reverse()
         {
             if (IsEmpty()) throw new Exception("Linked list is empty.");
@@ -178,6 +180,33 @@ namespace Fundamentals
             Tail = Head;
             Tail.next = null;
             Head = previous;
+        }
+
+        //O(N)
+        public int FindKthNodeFromEnd(int k)
+        {
+            if (k == 1) return Tail.value;
+            if (k == 0 || k > Count) throw new ArgumentException("Invalid Kth node");
+
+            var fast = Head;
+            var slow = Head;
+            var counter = k;
+
+            while(fast != null)
+            {
+                if (counter > 0)
+                {
+                    counter--;
+                    fast = fast.next;
+                }
+                else
+                {
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+            }
+
+            return slow.value;
         }
     }
 }
