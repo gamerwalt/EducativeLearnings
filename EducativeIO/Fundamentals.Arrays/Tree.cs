@@ -59,6 +59,71 @@ namespace Fundamentals
             return node;
         }
 
+        public void Traverse_DFS_PreOrder()
+        {
+            Traverse_DFS_PreOrder(Root);
+        }
+
+        private void Traverse_DFS_PreOrder(Node node)
+        {
+            if (node == null) return;
+
+            Console.WriteLine(node.Value);
+            Traverse_DFS_PreOrder(node.LeftChild);
+            Traverse_DFS_PreOrder(node.RightChild);
+        }
+
+        public void Traverse_DFS_InOrder()
+        {
+            Traverse_DFS_InOrder(Root);
+        }
+
+        private void Traverse_DFS_InOrder(Node node)
+        {
+            if (node == null) return;
+
+            Traverse_DFS_InOrder(node.LeftChild);
+            Console.WriteLine(node.Value);
+            Traverse_DFS_InOrder(node.RightChild);
+        }
+
+        public void Traverse_DFS_PostOrder()
+        {
+            Traverse_DFS_PostOrder(Root);
+        }
+
+        private void Traverse_DFS_PostOrder(Node node)
+        {
+            if (node == null) return;
+
+            Traverse_DFS_PostOrder(node.LeftChild);
+            Traverse_DFS_PostOrder(node.RightChild);
+            Console.WriteLine(node.Value);
+        }
+
+        public void Traverse_BFS()
+        {
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(Root.Value);
+
+            Traverse_BFS(Root, queue);
+        }
+
+        private void Traverse_BFS(Node node, Queue<int> queue)
+        {
+            if (node == null) return;
+            if (node.LeftChild != null)
+                queue.Enqueue(node.LeftChild.Value);
+            if (node.RightChild != null)
+                queue.Enqueue(node.RightChild.Value);
+
+            Traverse_BFS(node.LeftChild, queue);
+            Traverse_BFS(node.RightChild, queue);
+
+            if(queue.Count > 0)
+                Console.WriteLine(queue.Dequeue());
+        }
+
         private class Node
         {
             public int Value;

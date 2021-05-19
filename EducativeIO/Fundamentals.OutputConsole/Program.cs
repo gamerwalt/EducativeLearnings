@@ -16,7 +16,7 @@ namespace Fundamentals.OutputConsole
             tree.Insert(8);
             tree.Insert(10);
 
-            Console.WriteLine(tree.Find(20));
+            tree.Traverse_BFS();
         }
     }
 }
