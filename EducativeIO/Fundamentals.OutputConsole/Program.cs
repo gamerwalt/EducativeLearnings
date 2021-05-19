@@ -7,23 +7,16 @@ namespace Fundamentals.OutputConsole
     {
         static void Main(string[] args)
         {
-            var linkedList = new LinkedList();
+            var tree = new Tree();
+            tree.Insert(7);
+            tree.Insert(4);
+            tree.Insert(9);
+            tree.Insert(1);
+            tree.Insert(6);
+            tree.Insert(8);
+            tree.Insert(10);
 
-            linkedList.AddFirst(30);
-            linkedList.AddFirst(20);
-            linkedList.AddFirst(10);
-            linkedList.AddLast(40);
-            linkedList.AddLast(50);
-
-            var arr = linkedList.ToArray();
-            foreach(var item in arr)
-                Console.WriteLine(item);
-
-            Console.WriteLine("*********************");
-            Console.WriteLine(linkedList.FindKthNodeFromEnd(1));
-            Console.WriteLine(linkedList.FindKthNodeFromEnd(2));
-            Console.WriteLine(linkedList.FindKthNodeFromEnd(3));
-            Console.WriteLine(linkedList.FindKthNodeFromEnd(0));
+            Console.WriteLine(tree.Find(20));
         }
     }
 }
