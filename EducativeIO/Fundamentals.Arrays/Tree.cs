@@ -6,7 +6,7 @@ namespace Fundamentals
 {
     public class Tree
     {
-        private Node Root;
+        public Node Root { get; set; }
 
         public void Insert(int value)
         {
@@ -101,6 +101,26 @@ namespace Fundamentals
             Console.WriteLine(node.Value);
         }
 
+        public int Height()
+        {
+            if (Root == null) return -1;
+            return Height(Root);
+        }
+
+        private int Height(Node node)
+        {
+            if (node == null) return 0;
+
+            if (IsLeaf(node)) return 0;
+
+            return 1 + Math.Max(Height(node.LeftChild), Height(node.RightChild));
+        }
+
+        private static bool IsLeaf(Node node)
+        {
+            return node.LeftChild == null && node.RightChild == null;
+        }
+
         public void Traverse_BFS()
         {
             Queue<int> queue = new Queue<int>();
@@ -124,7 +144,30 @@ namespace Fundamentals
                 Console.WriteLine(queue.Dequeue());
         }
 
-        private class Node
+        public bool Equals(Tree tree)
+        {
+            return Equals(Root, tree.Root);
+        }
+
+        private bool Equals(Node node, Node node2)
+        {
+            if (node == null || node2 == null) return true;
+
+            if (node.Value != node2.Value) return false;
+
+            if (node.LeftChild != null && node2.LeftChild != null &&
+                node.LeftChild.Value != node2.LeftChild.Value) 
+                return false;
+            else if (node.RightChild != null && node2.RightChild != null &&
+                node.RightChild.Value != node2.RightChild.Value) 
+                return false;
+            else
+            {
+                return Equals(node.LeftChild, node2.LeftChild) && Equals(node.RightChild, node2.RightChild);
+            }
+        }
+
+        public class Node
         {
             public int Value;
             public Node LeftChild;

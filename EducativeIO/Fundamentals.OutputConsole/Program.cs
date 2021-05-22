@@ -16,7 +16,16 @@ namespace Fundamentals.OutputConsole
             tree.Insert(8);
             tree.Insert(10);
 
-            tree.Traverse_BFS();
+            var tree2 = new Tree();
+            tree2.Insert(5);
+            tree2.Insert(4);
+            tree2.Insert(9);
+            tree2.Insert(1);
+            tree2.Insert(6);
+            tree2.Insert(8);
+            tree2.Insert(10);
+
+            Console.WriteLine(tree.Equals(tree2));
         }
     }
 }
