@@ -11,9 +11,12 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 1, 2, -1, 2, 2 };
+            var intervals = new List<Interval>();
+            intervals.Add(new Interval(1, 4));
+            intervals.Add(new Interval(2, 5));
+            intervals.Add(new Interval(7, 9));
 
-            Console.WriteLine(FastAndSlow.CircularArrayLoopExists(arr));
+            var result = MergeIntervals.Merge(intervals);
         }
     }
 }
