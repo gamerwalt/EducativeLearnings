@@ -12,11 +12,11 @@ namespace EducativeIO
         static void Main(string[] args)
         {
             var intervals = new List<Interval>();
-            intervals.Add(new Interval(1, 4));
-            intervals.Add(new Interval(2, 5));
-            intervals.Add(new Interval(7, 9));
+            intervals.Add(new Interval(1, 3));
+            intervals.Add(new Interval(5, 7));
+            intervals.Add(new Interval(8, 12));
 
-            var result = MergeIntervals.Merge(intervals);
+            var result = MergeIntervals.InsertThenMerge(intervals, new Interval(4, 10));
         }
     }
 }
