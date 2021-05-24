@@ -11,8 +11,9 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var str = "babad";
-            Console.WriteLine(Palindromes.LongestPalindromeInAString(str));
+            var arr = new int[] { 1, 2, -1, 2, 2 };
+
+            Console.WriteLine(FastAndSlow.CircularArrayLoopExists(arr));
         }
     }
 }

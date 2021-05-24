@@ -313,5 +313,61 @@ namespace CodingInterviewPatterns
 
             return head;
         }
+
+        /// <summary>
+        /// We are given an array containing positive and negative numbers. 
+        /// Suppose the array contains a number ‘M’ at a particular index. 
+        /// Now, if ‘M’ is positive we will move forward ‘M’ indices and if ‘M’ is negative move backwards ‘M’ indices. 
+        /// You should assume that the array is circular which means two things:
+        /// If, while moving forward, we reach the end of the array, we will jump to the first element to continue the movement.
+        /// If, while moving backward, we reach the beginning of the array, we will jump to the last element to continue the movement.
+        /// Write a method to determine if the array has a cycle. 
+        /// The cycle should have more than one element and should follow one direction which means the cycle should not contain both 
+        /// forward and backward movements.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static bool CircularArrayLoopExists(int[] arr)
+        {
+            ///Solution:
+            ///We have to loop through the array and while we loop, we want to use 2 pointers,
+            ///as we keep moving, we want to find the next index. The tricky part is when the next index to go to, we will have to wrap the next index
+            ///by finding the mod of the array length. if it's less than 0, we add the array length to the next index we found with the mod
+            ///if the nextIndex the same as the current index, we have a one element cycle, we return -1; 
+            for (int i = 0; i < arr.Length; i++)
+            {
+                var isForward = arr[i] >= 0;
+                var slow = i;
+                var fast = i;
+
+                do
+                {
+                    slow = FindNextIndex(arr, isForward, slow);
+                    fast = FindNextIndex(arr, isForward, fast);
+                    if (fast != -1)
+                        fast = FindNextIndex(arr, isForward, fast);
+                } while (slow != -1 && fast != -1 && slow != fast);
+
+                if (slow != -1 && slow == fast)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static int FindNextIndex(int[] arr, bool isForward, int currentIndex)
+        {
+            var direction = arr[currentIndex] >= 0;
+            if (isForward != direction) return -1;
+
+            int nextIndex = (currentIndex + arr[currentIndex]) % arr.Length;
+            if (nextIndex < 0)
+                nextIndex += arr.Length;
+
+            if (nextIndex == currentIndex)
+                nextIndex = -1;
+
+            return nextIndex;
+        }
     }
 }

@@ -146,25 +146,21 @@ namespace Fundamentals
 
         public bool Equals(Tree tree)
         {
+            if (tree == null) return false;
+
             return Equals(Root, tree.Root);
         }
 
         private bool Equals(Node node, Node node2)
         {
-            if (node == null || node2 == null) return true;
+            if (node == null && node2 == null) return true;
 
-            if (node.Value != node2.Value) return false;
+            if (node != null && node2 != null)
+                return node.Value == node2.Value
+                    && Equals(node.LeftChild, node2.LeftChild)
+                    && Equals(node.RightChild, node2.RightChild);
 
-            if (node.LeftChild != null && node2.LeftChild != null &&
-                node.LeftChild.Value != node2.LeftChild.Value) 
-                return false;
-            else if (node.RightChild != null && node2.RightChild != null &&
-                node.RightChild.Value != node2.RightChild.Value) 
-                return false;
-            else
-            {
-                return Equals(node.LeftChild, node2.LeftChild) && Equals(node.RightChild, node2.RightChild);
-            }
+            return false;
         }
 
         public class Node
