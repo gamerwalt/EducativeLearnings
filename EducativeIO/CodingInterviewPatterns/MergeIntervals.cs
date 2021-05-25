@@ -64,5 +64,30 @@ namespace CodingInterviewPatterns
 
             return intervals;
         }
+
+        public static List<Interval> IntervalIntersection(Interval[] firstIntervals, Interval[] secondIntervals)
+        {
+            List<Interval> intervalsIntersection = new List<Interval>();
+            var pointer1 = 0;
+            var pointer2 = 0;
+
+            while (pointer1 < firstIntervals.Length && pointer2 < secondIntervals.Length)
+            {
+                var a = firstIntervals[pointer1];
+                var b = secondIntervals[pointer2];
+
+                // have to check if there's an intersection here
+                if((a.start >= b.start && a.start <= b.end) ||
+                        (b.start >= a.start && b.start <= a.end))
+                    intervalsIntersection.Add(new Interval(Math.Max(a.start, b.start), Math.Min(a.end, b.end)));
+
+                if (a.end < b.end)
+                    pointer1++;
+                else
+                    pointer2++;
+            }
+
+            return intervalsIntersection;
+        }
     }
 }
