@@ -11,10 +11,14 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var intervals1 = new Interval[] { new Interval(1, 3), new Interval(5, 6), new Interval(7, 9) };
-            var intervals2 = new Interval[] { new Interval(2, 3), new Interval(5, 7) };
+            var intervals = new List<Interval>() { new Interval(4, 5), new Interval(2, 3), new Interval(3, 6), new Interval(5, 7), new Interval(7, 8) };
 
-            var result = MergeIntervals.IntervalIntersection(intervals1, intervals2);
+            var results = MergeIntervals.FindAllConflictingAppointments(intervals);
+
+            foreach(var item in results)
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 }

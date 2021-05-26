@@ -89,5 +89,55 @@ namespace CodingInterviewPatterns
 
             return intervalsIntersection;
         }
+
+        public static bool CanAttendAllAppointments(Interval[] intervals)
+        {
+            //Sort first by the start
+            Array.Sort(intervals, (a, b) => a.start.CompareTo(b.start));
+
+            for(int i = 0; i < intervals.Length - 1; i++)
+            {
+                var current = intervals[i];
+                var next = intervals[i + 1];
+
+                //if we were to find all conflicting appointments, we would add current and next as conflicts
+                if (current.end > next.start) //we have an overlap
+                    return false;
+
+            }
+
+            return true;
+        }
+
+        public static List<Interval> FindAllConflictingAppointments(List<Interval> intervals)
+        {
+            intervals.Sort(delegate (Interval a, Interval b)
+            {
+                if (a.start == b.start) return a.end.CompareTo(b.end);
+                return a.start.CompareTo(b.start);
+            });
+            var conflicts = new List<Interval>();
+
+            for(int i = 0; i < intervals.Count - 1; i++)
+            {
+                var current = intervals[i];
+                var next = intervals[i + 1];
+
+                if (current.end > next.start || current.end > next.end)
+                {
+                    conflicts.Add(current);
+                    conflicts.Add(next);
+                    //merge these 2 and decrease the counter if i > 0
+                    var newInterval = new Interval(Math.Min(current.start, next.start), Math.Max(current.end, next.end));
+
+                    intervals[i] = newInterval;
+                    intervals.Remove(next);
+                    intervals.Remove(current);
+                    if (i > 0) i--;
+                }
+            }
+
+            return conflicts;
+        }
     }
 }

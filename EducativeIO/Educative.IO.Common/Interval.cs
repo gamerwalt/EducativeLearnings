@@ -10,5 +10,10 @@
             this.start = start;
             this.end = end;
         }
+
+        public override string ToString()
+        {
+            return $"Start: {start}, End: {end}";
+        }
     }
 }
