@@ -1,5 +1,6 @@
 ﻿using Educative.IO.Common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -138,6 +139,38 @@ namespace CodingInterviewPatterns
             }
 
             return conflicts;
+        }
+
+        public static int FindMinimumMeetingRooms(List<Interval> intervals)
+        {
+            var overlaps = 0;
+
+            intervals.Sort((a, b) => a.start.CompareTo(b.start));
+
+            SortedSet<Interval> meetings = new SortedSet<Interval>(new IntervalComparer());
+
+            //keep adding to the meetings and if the oldest meeting based on the end time has ended or the current interval's start time
+            //is greater than or equal to the oldest meeting's end, remove the meeting from the list since we're done. The minheap (sortedSet) 
+            //will keep the total number of rooms we have
+            foreach(var interval in intervals)
+            {
+                while (meetings.Count > 0 && interval.start >= meetings.Min.end)
+                    meetings.Remove(meetings.Min);
+
+                meetings.Add(interval);
+
+                overlaps = Math.Max(overlaps, meetings.Count);
+            }
+            
+            return overlaps;
+        }
+    }
+
+    public class IntervalComparer : IComparer<Interval>
+    {
+        public int Compare(Interval a, Interval b)
+        {
+            return a.end.CompareTo(b.end);
         }
     }
 }
