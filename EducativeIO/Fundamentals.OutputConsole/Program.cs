@@ -8,24 +8,16 @@ namespace Fundamentals.OutputConsole
         static void Main(string[] args)
         {
             var tree = new Tree();
-            tree.Insert(7);
-            tree.Insert(4);
-            tree.Insert(9);
-            tree.Insert(1);
-            tree.Insert(6);
-            tree.Insert(8);
-            tree.Insert(10);
+            tree.Root = new Tree.Node(20);
+            tree.Root.LeftChild = new Tree.Node(10);
+            tree.Root.LeftChild.LeftChild = new Tree.Node(6);
+            tree.Root.LeftChild.LeftChild.LeftChild = new Tree.Node(3);
+            tree.Root.LeftChild.LeftChild.RightChild = new Tree.Node(8);
+            tree.Root.LeftChild.RightChild = new Tree.Node(21);
+            tree.Root.RightChild = new Tree.Node(30);
+            tree.Root.RightChild.LeftChild = new Tree.Node(4);
 
-            var tree2 = new Tree();
-            tree2.Insert(5);
-            tree2.Insert(4);
-            tree2.Insert(9);
-            tree2.Insert(1);
-            tree2.Insert(6);
-            tree2.Insert(8);
-            tree2.Insert(10);
-
-            Console.WriteLine(tree.Equals(tree2));
+            tree.Traverse_BFS();
         }
     }
 }

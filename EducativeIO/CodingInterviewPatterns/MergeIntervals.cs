@@ -164,6 +164,43 @@ namespace CodingInterviewPatterns
             
             return overlaps;
         }
+
+        public static int FindMaximumCPULoad(List<Job> jobs)
+        {
+            var maxLoad = int.MinValue;
+
+            jobs.Sort((a, b) => a.Start.CompareTo(b.Start));
+
+            for(int i = 0; i<jobs.Count - 1; i++)
+            {
+                var currentJob = jobs[i];
+                var nextJob = jobs[i + 1];
+
+                if(currentJob.End >= nextJob.Start && currentJob.End <= nextJob.End)
+                {
+                    maxLoad = Math.Max(currentJob.CpuLoad + nextJob.CpuLoad, maxLoad);
+
+                    var newJob = new Job(
+                        Math.Min(currentJob.Start, nextJob.Start), 
+                        Math.Max(currentJob.End, nextJob.End), 
+                        currentJob.CpuLoad + nextJob.CpuLoad
+                    );
+
+                    jobs[i] = newJob;
+                    jobs.Remove(currentJob);
+                    jobs.Remove(nextJob);
+
+                    i--;
+                }
+                else
+                {
+                    var currentMaxLoad = Math.Max(currentJob.CpuLoad, nextJob.CpuLoad);
+                    maxLoad = Math.Max(currentMaxLoad, maxLoad);
+                }
+            }
+
+            return maxLoad;
+        }
     }
 
     public class IntervalComparer : IComparer<Interval>

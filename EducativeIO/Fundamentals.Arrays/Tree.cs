@@ -163,6 +163,27 @@ namespace Fundamentals
             return false;
         }
 
+        public void PrintNodesAtKDistance(int k)
+        {
+            if (Root == null) return;
+
+            PrintNodesAtKDistance(Root, k);
+        }
+
+        private void PrintNodesAtKDistance(Node node, int k)
+        {
+            if (node == null) return;
+
+            if (k == 0 && node != null)
+            {
+                Console.WriteLine(node.Value);
+                return;
+            }
+
+            PrintNodesAtKDistance(node.LeftChild, k - 1);
+            PrintNodesAtKDistance(node.RightChild, k - 1);
+        }
+
         public class Node
         {
             public int Value;

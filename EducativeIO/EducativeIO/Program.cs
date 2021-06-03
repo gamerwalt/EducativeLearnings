@@ -11,9 +11,14 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var intervals = new List<Interval>() { new Interval(4, 5), new Interval(2, 3), new Interval(2, 4), new Interval(3, 5) };
+            var jobs = new List<Job>()
+            {
+                new Job(1, 4, 3),
+                new Job(2, 5, 4),
+                new Job(7, 9, 6)
+            };
 
-            var results = MergeIntervals.FindMinimumMeetingRooms(intervals);
+            var results = MergeIntervals.FindMaximumCPULoad(jobs);
 
             Console.WriteLine(results);
         }

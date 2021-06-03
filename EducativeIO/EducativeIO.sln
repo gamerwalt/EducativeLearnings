@@ -27,7 +27,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions", "G\Questions\Qu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTCI", "CTCI", "{7C217025-51FA-46A7-9D5E-B1822E8B3D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArraysAndStrings", "CTCI\ArraysAndStrings\ArraysAndStrings.csproj", "{CA718B76-E029-4F6B-A049-1EC24B28E242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArraysAndStrings", "CTCI\ArraysAndStrings\ArraysAndStrings.csproj", "{CA718B76-E029-4F6B-A049-1EC24B28E242}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{AC635197-7381-44A1-A03C-99E188E324DA}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\DS and Algos.xlsx = Documents\DS and Algos.xlsx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
