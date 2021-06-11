@@ -6,6 +6,7 @@ namespace Fundamentals
 {
     public class Tree
     {
+        private int BuildTreeCounter;
         public Node Root { get; set; }
 
         public void Insert(int value)
@@ -170,6 +171,28 @@ namespace Fundamentals
             PrintNodesAtKDistance(Root, k);
         }
 
+        public Node BuildTreeFromPreOrderAndInOrder(int[] preOrder, int[] inOrder)
+        {
+            //all the values in the preOrder can be used as the root
+            //the left side of the root value's index in the inorder will be considered the left subtree
+            //the right side of the root value's index in the inorder will be considered the right subtree
+            return BuildTreeFromPreOrderAndInOrder(preOrder, inOrder, 0, preOrder.Length -1);
+        }
+
+        private Node BuildTreeFromPreOrderAndInOrder(int[] preOrder, int[] inOrder, int left, int right)
+        {
+            if (left > right) return null;
+
+            var root = new Node(preOrder[BuildTreeCounter]);
+            BuildTreeCounter++;
+
+            var rootIndexInInOrderArray = Array.IndexOf(inOrder, root.Value);
+            root.LeftChild = BuildTreeFromPreOrderAndInOrder(preOrder, inOrder, left, rootIndexInInOrderArray - 1);
+            root.RightChild = BuildTreeFromPreOrderAndInOrder(preOrder, inOrder, rootIndexInInOrderArray + 1, right);
+
+            return root;
+        }
+
         private void PrintNodesAtKDistance(Node node, int k)
         {
             if (node == null) return;
@@ -183,6 +206,7 @@ namespace Fundamentals
             PrintNodesAtKDistance(node.LeftChild, k - 1);
             PrintNodesAtKDistance(node.RightChild, k - 1);
         }
+
 
         public class Node
         {
