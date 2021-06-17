@@ -71,6 +71,7 @@ namespace Fundamentals
             //each course has a preRequisite, add it to the list
             foreach(var item in preRequisites)
             {
+                //Add directed graph
                 map.GetValueOrDefault(item[1]).Add(item[0]);
             }
 
@@ -109,6 +110,93 @@ namespace Fundamentals
             visited[i] = 1;
 
             return true;
+        }
+
+        public static bool PossibleBiPartition(int n, int[][] dislikes)
+        {
+            Dictionary<int, List<int>> map = new Dictionary<int, List<int>>();
+            for(int i = 0; i<n; i++)
+            {
+                map.Add(i, new List<int>());
+            }
+            foreach(var item in dislikes)
+            {
+                //Add undirected graph
+                map.GetValueOrDefault(item[0] - 1).Add(item[1] - 1);
+                map.GetValueOrDefault(item[1] - 1).Add(item[0] - 1);
+            }
+
+            var visited = new int[n];
+            
+            for(int i = 0; i<n; i++)
+            {
+                if (visited[i] == 0 && !DFS_PossibleBiPartition(map, visited, i, 1))
+                    return false;
+            }
+
+            return true;
+        }
+
+        private static bool DFS_PossibleBiPartition(Dictionary<int, List<int>> map, int[] visited, int person, int group)
+        {
+            visited[person] = group;
+
+            foreach(var dislikePerson in map.GetValueOrDefault(person))
+            {
+                if (visited[dislikePerson] == group)
+                    return false;
+
+                if (visited[dislikePerson] == 0 && !DFS_PossibleBiPartition(map, visited, dislikePerson, -group))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static List<int> FindMinimumHeightTrees(int n, int[][] edges)
+        {
+            if (n == 1) return new List<int>() { 0 };
+
+            var graph = new List<HashSet<int>>();
+            for (int i = 0; i < n; i++)
+                graph.Add(new HashSet<int>());
+            foreach(var edge in edges)
+            {
+                graph[edge[0]].Add(edge[1]);
+                graph[edge[1]].Add(edge[0]);
+            }
+
+            var leaves = new List<int>();
+            for (int i = 0; i < n; i++)
+                if (graph[i].Count == 1)
+                    leaves.Add(i);
+
+            while(n > 2)
+            {
+                n -= leaves.Count;
+
+                var newLeaves = new List<int>();
+
+                foreach(var item in leaves)
+                {
+                    var j = 0;
+                    var enumerator = graph[item].GetEnumerator();
+                    while(enumerator.MoveNext())
+                    {
+                        j = enumerator.Current;
+                        break;
+                    }
+                    
+                    graph[j].Remove(item);
+
+                    if (graph[j].Count == 1)
+                        newLeaves.Add(j);
+                }
+
+                leaves = newLeaves;
+            }
+
+            return leaves;
         }
     }
 }

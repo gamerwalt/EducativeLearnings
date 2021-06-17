@@ -208,5 +208,71 @@ namespace Fundamentals
 
             return slow.value;
         }
+
+        public void RemoveNthNodeFromEndOfList(int n)
+        {
+            if(n == 1)
+            {
+                var previous = this.GetPrevious(Tail);
+                Tail = previous;
+            }
+
+            if (n == 0 || n > Count) throw new ArgumentException("Invalid Nth Node");
+
+            var fast = Head;
+            var slow = Head;
+            var counter = n;
+
+            while(fast != null)
+            {
+                if(counter > 0)
+                {
+                    counter--;
+                    fast = fast.next;
+                }
+                else
+                {
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+            }
+
+            //at this point, slow is at the nth node
+            var previousNthNode = GetPrevious(slow);
+            var next = slow.next;
+            previousNthNode.next = next;
+            slow = null;
+            Count--;
+        }
+
+        public Node Partition(LinkedList list, int x)
+        {
+            var greaterThanX = new LinkedList().Head;
+            var greaterRunner = greaterThanX;
+            var lessThanX = new LinkedList().Head;
+            var lessRunner = lessThanX;
+            
+            var headOfList = list.Head;
+
+            while(headOfList != null)
+            {
+                if(headOfList.value < x)
+                {
+                    lessRunner.next = headOfList;
+                    lessRunner = lessRunner.next;
+                }
+                else
+                {
+                    greaterRunner.next = headOfList;
+                    greaterRunner = greaterRunner.next;
+                }
+
+                headOfList = headOfList.next;
+            }
+
+            greaterRunner.next = null;
+            lessRunner.next = greaterThanX.next;
+            return lessThanX;
+        }
     }
 }

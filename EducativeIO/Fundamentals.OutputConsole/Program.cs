@@ -7,15 +7,11 @@ namespace Fundamentals.OutputConsole
     {
         static void Main(string[] args)
         {
-            int[][] tests = new int[][] 
-            {
-                new int[] {0, 1},
-                new int[] {1, 2},
-                new int[] {3, 2},
-                new int[] {4, 3},
-                new int[] {2, 4} //Remove this to make it true. This is a connection from 4 having a prerequisite of 2
-            };
-            Console.WriteLine(GraphProblems.CanFinishCourses(5, tests));
+            var x = new TreeNode(2147483647, null, null);
+            x.left = new TreeNode(2147483647, null, null);
+            x.left.left = new TreeNode(2147483647, null, null);
+
+            var l = (new LeetCodeTreeProblems()).AverageOfLevels(x);
         }
     }
 }
