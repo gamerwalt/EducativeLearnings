@@ -207,6 +207,33 @@ namespace Fundamentals
             PrintNodesAtKDistance(node.RightChild, k - 1);
         }
 
+        public int Size()
+        {
+            return Size(Root);
+        }
+
+        private int Size(Node node)
+        {
+            if (node == null) return 0;
+
+            if (IsLeaf(node)) return 1;
+
+            return 1 + Size(node.LeftChild) + Size(node.RightChild);
+        }
+
+        public int CountLeaves()
+        {
+            return CountLeaves(Root);
+        }
+
+        private int CountLeaves(Node node)
+        {
+            if (node == null) return 0;
+
+            if (IsLeaf(node)) return 1;
+
+            return CountLeaves(node.LeftChild) + CountLeaves(node.RightChild);
+        }
 
         public class Node
         {

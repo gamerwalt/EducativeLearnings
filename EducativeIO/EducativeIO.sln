@@ -36,9 +36,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LeetCode Solutions", "LeetCode Solutions", "{29F1ACF3-003A-4D52-AABA-23FA7DB870BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeSolutions", "LeetCode Solutions\LeetCodeSolutions\LeetCodeSolutions.csproj", "{F712C0D7-A075-4878-9179-122CEAC1176C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutions", "LeetCode Solutions\LeetCodeSolutions\LeetCodeSolutions.csproj", "{F712C0D7-A075-4878-9179-122CEAC1176C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutionsConsole", "LeetCode Solutions\LeetCodeSolutionsConsole\LeetCodeSolutionsConsole.csproj", "{BB560857-F319-4ADF-B69F-2314A3C945F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeSolutions.Tests", "LeetCode Solutions\LeetCodeSolutions.Tests\LeetCodeSolutions.Tests.csproj", "{5B0821A2-59B9-4238-A066-CC583A8F36AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +96,10 @@ Global
 		{BB560857-F319-4ADF-B69F-2314A3C945F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB560857-F319-4ADF-B69F-2314A3C945F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB560857-F319-4ADF-B69F-2314A3C945F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{CA718B76-E029-4F6B-A049-1EC24B28E242} = {7C217025-51FA-46A7-9D5E-B1822E8B3D31}
 		{F712C0D7-A075-4878-9179-122CEAC1176C} = {29F1ACF3-003A-4D52-AABA-23FA7DB870BE}
 		{BB560857-F319-4ADF-B69F-2314A3C945F5} = {29F1ACF3-003A-4D52-AABA-23FA7DB870BE}
+		{5B0821A2-59B9-4238-A066-CC583A8F36AE} = {29F1ACF3-003A-4D52-AABA-23FA7DB870BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6945EF9E-D7CE-4607-A436-D0AFEA68FDEE}

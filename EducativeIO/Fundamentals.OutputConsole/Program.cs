@@ -7,11 +7,13 @@ namespace Fundamentals.OutputConsole
     {
         static void Main(string[] args)
         {
-            var x = new TreeNode(2147483647, null, null);
-            x.left = new TreeNode(2147483647, null, null);
-            x.left.left = new TreeNode(2147483647, null, null);
-
-            var l = (new LeetCodeTreeProblems()).AverageOfLevels(x);
+            var stack = new MyStack();
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            Console.WriteLine(stack.Top());
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Empty());
         }
     }
 }
