@@ -6,6 +6,51 @@ namespace Fundamentals
 {
     public class TerribleWhiteboard
     {
+        public static string LongestCommonPrefix(string[] strs)
+        {
+            if (strs.Length == 0) return string.Empty;
+            var result = "";
+
+            var firstWord = strs[0];
+
+            foreach(var item in firstWord)
+            {
+                for(int i = 0; i<strs.Length; i++)
+                {
+                    var nextWord = strs[i];
+                    
+                }
+            }
+
+            return result;
+        }
+
+        public static int ReverseInteger(int number)
+        {
+            var isNegative = false;
+            if (number == 0) return 0;
+            if (number < 0)
+            {
+                isNegative = true;
+                number *= 1;
+            }
+
+            long result = 0;
+
+            while(number > 0)
+            {
+                var remainder = number % 10;
+
+                result = result * 10 + remainder;
+
+                number /= 10;
+            }
+
+            if (result >= int.MaxValue) return 0;
+
+            return isNegative  == true ? (int)result * -1 : (int)result;
+        }
+
         public static bool ValidAnagram(string str1, string str2)
         {
             if (str1.Length != str2.Length) return false;

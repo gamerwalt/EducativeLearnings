@@ -7,13 +7,7 @@ namespace Fundamentals.OutputConsole
     {
         static void Main(string[] args)
         {
-            var stack = new MyStack();
-            stack.Push(1);
-            stack.Push(2);
-            stack.Push(3);
-            Console.WriteLine(stack.Top());
-            Console.WriteLine(stack.Pop());
-            Console.WriteLine(stack.Empty());
+            Console.WriteLine(Blind75.ContainerWithMostWater2(new int[] { 4, 3, 2, 1, 4 }));
         }
     }
 }
