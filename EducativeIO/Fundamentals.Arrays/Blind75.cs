@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Educative.IO.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -80,6 +81,39 @@ namespace Fundamentals
             }
 
             return overallWater;
+        }
+
+        public static ListNode RemoveNthNodeFromEndOfList(ListNode head, int n)
+        {
+            var dummy = new ListNode(0);
+            dummy.next = head;
+            int length = 0;
+            var first = head;
+            while(first != null)
+            {
+                length++;
+                first = first.next;
+            }
+
+            //at this point, we have the length of the linkedlist and first is at the end
+            length -= n; //Get the position from the beginning where we need to actually get to
+            first = dummy;
+
+            while(length > 0)
+            {
+                length--;
+                first = first.next;
+            }
+
+            first.next = first.next.next;
+
+            return dummy.next;
+        }
+
+
+        public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        {
+
         }
     }
 }

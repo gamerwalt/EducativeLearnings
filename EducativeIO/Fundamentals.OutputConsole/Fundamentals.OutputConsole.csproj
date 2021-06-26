@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Educative.IO.Common\Educative.IO.Common.csproj" />
     <ProjectReference Include="..\Fundamentals.Arrays\Fundamentals.csproj" />
   </ItemGroup>
 

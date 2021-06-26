@@ -5,4 +5,8 @@
     <AssemblyName>Fundamentals</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Educative.IO.Common\Educative.IO.Common.csproj" />
+  </ItemGroup>
+
 </Project>
