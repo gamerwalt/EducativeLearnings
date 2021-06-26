@@ -113,7 +113,32 @@ namespace Fundamentals
 
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
+            var dummy = new ListNode(0);
 
+            if (l1 == null && l2 == null) return dummy.next;
+
+            var current1 = l1;
+            var current2 = l2;
+            var current3 = dummy;
+            while(current1 != null && current2 != null)
+            {
+                if(current1.value < current2.value)
+                {
+                    current3.next = current1;
+                    current1 = current1.next;
+                }
+                else
+                {
+                    current3.next = current2;
+                    current2 = current2.next;
+                }
+
+                current3 = current3.next;
+            }
+
+            current3.next = current1 == null ? current2 : current1;
+
+            return dummy.next;
         }
     }
 }
