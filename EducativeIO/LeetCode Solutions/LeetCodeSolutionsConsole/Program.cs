@@ -7,16 +7,7 @@ namespace LeetCodeSolutionsConsole
     {
         static void Main(string[] args)
         {
-            var result = AAssessment.ThreeSum(new int[] { -2, 0, 0, 2, 2 });
-            foreach (var items in result)
-            {
-                foreach(var i in items)
-                {
-                    Console.Write(i);
-                    Console.Write(',');
-                }
-                Console.WriteLine("*******");
-            }
+            var result = ArrayQuestions.ShuffleTheArray(new int[] { 2, 5, 1, 3, 4, 7 }, 3);
         }
     }
 }
