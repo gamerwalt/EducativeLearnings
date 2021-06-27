@@ -8,15 +8,9 @@ namespace Fundamentals.OutputConsole
     {
         static void Main(string[] args)
         {
-            var listNode1 = new ListNode(1);
-            listNode1.next = new ListNode(2);
-            listNode1.next.next = new ListNode(4);
+            var nums = new int[] { 5,1,3 };
 
-            var listNode2 = new ListNode(1);
-            listNode2.next = new ListNode(3);
-            listNode2.next.next = new ListNode(4);
-
-            var result = Blind75.MergeTwoLists(listNode1, listNode2);
+            Console.WriteLine(Blind75.SearchInRotatedArray(nums, 5));
 
         }
     }

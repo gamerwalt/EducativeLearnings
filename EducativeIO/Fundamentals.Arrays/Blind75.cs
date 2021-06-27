@@ -1,6 +1,7 @@
 ﻿using Educative.IO.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Fundamentals
@@ -139,6 +140,95 @@ namespace Fundamentals
             current3.next = current1 == null ? current2 : current1;
 
             return dummy.next;
+        }
+
+        public static ListNode MergeKLists(ListNode[] lists)
+        {
+
+            var items = new List<int>();
+            foreach(var item in lists)
+            {
+                var currentItem = item;
+                while(currentItem != null)
+                {
+                    items.Add(currentItem.value);
+                    
+                    currentItem = currentItem.next;
+                }
+            }
+
+            var dummy = new ListNode(0);
+            var current = dummy;
+            foreach(var item in items.OrderBy(c => c).ToList())
+            {
+                current.next = new ListNode(item);
+                current = current.next;
+            }
+
+            return dummy.next;
+        }
+
+        public static int SearchInRotatedArray(int[] nums, int target)
+        {
+            if (nums.Length == 0) return -1;
+
+            var left = 0;
+            var right = nums.Length - 1;
+
+            while(left < right)
+            {
+                var midPoint = left + (right - left) / 2;
+                if(nums[midPoint] > nums[right])
+                    left = midPoint + 1;
+                else
+                    right = midPoint;
+            }
+
+            var start = left;
+            left = 0;
+            right = nums.Length - 1;
+
+            if (target >= nums[start] && target <= nums[right])
+                left = start;
+            else
+                right = start;
+
+
+            while(left <= right)
+            {
+                var midpoint = left + (right - left) / 2;
+                if (nums[midpoint] == target)
+                    return midpoint;
+                else if (nums[midpoint] < target)
+                    left = midpoint + 1;
+                else
+                    right = midpoint - 1;
+            }
+
+            return -1;
+        }
+
+        private static int BinarySearch(int[] nums, int low, int high, int target)
+        {
+            if (low > high) return -1;
+            if (low == nums.Length) return -1;
+
+            var mid = low + (high - low) / 2;
+
+            if(nums[mid] == target)
+            {
+                return mid;
+            }
+            else if(nums[mid] > target)
+            {
+                return BinarySearch(nums, low, mid - 1, target);
+            }
+            else if(nums[mid] < target)
+            {
+                return BinarySearch(nums, mid + 1, high, target);
+            }
+
+            return -1;
         }
     }
 }
