@@ -8,21 +8,32 @@ namespace Fundamentals
     {
         public static string LongestCommonPrefix(string[] strs)
         {
-            if (strs.Length == 0) return string.Empty;
-            var result = "";
+            if (strs == null || strs.Length == 0) return "";
 
-            var firstWord = strs[0];
+            return LongestCommonPrefix(strs, 0, strs.Length - 1);
+        }
 
-            foreach(var item in firstWord)
+        private static string LongestCommonPrefix(string[] strs, int left, int right)
+        {
+            if (left == right) return strs[left];
+
+            var mid = (left + right) / 2;
+            var leftCommon = LongestCommonPrefix(strs, 0, mid);
+            var rightCommon = LongestCommonPrefix(strs, mid + 1, right);
+
+            return CommonPrefix(leftCommon, rightCommon);
+        }
+
+        private static string CommonPrefix(string leftCommon, string rightCommon)
+        {
+            var min = Math.Min(leftCommon.Length, rightCommon.Length);
+            for(int i = 0; i<min; i++)
             {
-                for(int i = 0; i<strs.Length; i++)
-                {
-                    var nextWord = strs[i];
-                    
-                }
+                if (leftCommon[i] != rightCommon[i])
+                    return leftCommon.Substring(0, i);
             }
 
-            return result;
+            return leftCommon.Substring(0, min);
         }
 
         public static int ReverseInteger(int number)

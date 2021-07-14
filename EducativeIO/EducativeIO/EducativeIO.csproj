@@ -14,7 +14,7 @@
     <ProjectReference Include="..\Educative.IO.Common\Educative.IO.Common.csproj" />
     <ProjectReference Include="..\EducativeArraysNetStandard\EducativeArraysNetStandard.csproj" />
     <ProjectReference Include="..\EducativeArrays\EducativeArrays.csproj" />
-    <ProjectReference Include="..\LeetCodeArrays\LeetCodeArrays.csproj" />
+    <ProjectReference Include="..\LeetCodeArrays\Facebook.csproj" />
   </ItemGroup>
 
 </Project>

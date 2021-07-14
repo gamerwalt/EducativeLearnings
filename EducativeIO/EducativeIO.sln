@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducativeIO", "EducativeIO\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducativeArrays", "EducativeArrays\EducativeArrays.csproj", "{8C8E0D41-B90B-46F0-BA42-C174A9AB8951}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeArrays", "LeetCodeArrays\LeetCodeArrays.csproj", "{AB6EC376-43DD-418F-BC17-67D28CC9725C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook", "LeetCodeArrays\Facebook.csproj", "{AB6EC376-43DD-418F-BC17-67D28CC9725C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducativeArraysNetStandard", "EducativeArraysNetStandard\EducativeArraysNetStandard.csproj", "{FF586BF9-2E2F-44B4-8F90-DBDA750C0C2A}"
 EndProject
@@ -40,7 +40,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutions", "LeetCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutionsConsole", "LeetCode Solutions\LeetCodeSolutionsConsole\LeetCodeSolutionsConsole.csproj", "{BB560857-F319-4ADF-B69F-2314A3C945F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeSolutions.Tests", "LeetCode Solutions\LeetCodeSolutions.Tests\LeetCodeSolutions.Tests.csproj", "{5B0821A2-59B9-4238-A066-CC583A8F36AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutions.Tests", "LeetCode Solutions\LeetCodeSolutions.Tests\LeetCodeSolutions.Tests.csproj", "{5B0821A2-59B9-4238-A066-CC583A8F36AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBQuestions", "Facebook\FBQuestions\FBQuestions.csproj", "{2DD908D1-F526-49C2-8924-090C60364DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +102,10 @@ Global
 		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B0821A2-59B9-4238-A066-CC583A8F36AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD908D1-F526-49C2-8924-090C60364DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD908D1-F526-49C2-8924-090C60364DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD908D1-F526-49C2-8924-090C60364DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD908D1-F526-49C2-8924-090C60364DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

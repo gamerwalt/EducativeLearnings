@@ -210,4 +210,12 @@ namespace CodingInterviewPatterns
             return a.end.CompareTo(b.end);
         }
     }
+
+    public class TestComparer : IComparer<int[]>
+    {
+        public int Compare(int[] x, int[] y)
+        {
+            return x[0].CompareTo(y[0]);
+        }
+    }
 }

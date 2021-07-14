@@ -1,9 +1,9 @@
 ﻿using Educative.IO.Common;
 using EducativeArrays;
-using LeetCodeArrays;
 using System;
 using System.Collections.Generic;
 using CodingInterviewPatterns;
+using Facebook;
 
 namespace EducativeIO
 {
@@ -11,16 +11,16 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var jobs = new List<Job>()
+            var nums = new int[] { 1, 2, 3, 4 };
+
+            var result = FacebookLeetcode.ProductExceptSelf(nums);
+
+            foreach(var item in result)
             {
-                new Job(1, 4, 3),
-                new Job(2, 5, 4),
-                new Job(7, 9, 6)
-            };
-
-            var results = MergeIntervals.FindMaximumCPULoad(jobs);
-
-            Console.WriteLine(results);
+                Console.WriteLine(item);
+            }
         }
+
+        
     }
 }
