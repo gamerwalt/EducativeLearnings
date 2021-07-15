@@ -4,6 +4,33 @@ namespace Facebook
 {
     public class FacebookLeetcode
     {
+
+        public bool ValidPalindrome(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return false;
+
+            return IsValidPalindrome(s, 0, s.Length - 1, false);
+        }
+
+        private bool IsValidPalindrome(string s, int left, int right, bool characterDeleted)
+        {
+            while(left < right)
+            {
+                if(s[left] != s[right])
+                {
+                    if (characterDeleted)
+                        return false;
+
+                    return IsValidPalindrome(s, left + 1, right, true) || IsValidPalindrome(s, left, right - 1, true);
+                }
+
+                left++;
+                right--;
+            }
+
+            return true;
+        }
+
         public static int[] Array1Question(int[] nums)
         {
             if (nums == null || nums.Length == 0)
