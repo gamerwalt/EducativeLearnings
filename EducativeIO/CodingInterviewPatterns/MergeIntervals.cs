@@ -207,7 +207,7 @@ namespace CodingInterviewPatterns
     {
         public int Compare(Interval a, Interval b)
         {
-            return a.end.CompareTo(b.end);
+            return a.start.CompareTo(b.start);
         }
     }
 
