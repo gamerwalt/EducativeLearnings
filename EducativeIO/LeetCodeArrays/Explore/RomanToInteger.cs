@@ -40,7 +40,7 @@ namespace Facebook.Explore
 
             var result = 0;
 
-            for(int index = 0; index <= s.Length ; index++)
+            for(int index = 0; index < s.Length ; index++)
             {
                 if( index + 1 < s.Length && dict[s[index]] < dict[s[index + 1]])
                 {

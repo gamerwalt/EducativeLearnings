@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodingInterviewPatterns;
 using Educative.IO.Common;
 using Facebook;
+using Facebook.Explore;
 
 namespace EducativeIO
 {
@@ -11,9 +12,9 @@ namespace EducativeIO
     {
         static void Main(string[] args)
         {
-            var nums = new int[] { 1, 2, 3, 4, 5 };
-            
-            var res = FacebookLeetcode.FindClosestElements(nums, 4, 2);
+            var nums = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+
+            var res = RemoveDuplicatesFromSortedArray.RemoveDuplicates(nums);
             Console.WriteLine(res);
         }
 
